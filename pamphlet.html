@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NISHLAB CREATIONS — Course Pamphlet</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#111;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;font-family:'DM Sans',sans-serif;}
+.pamp-wrap{background:#0a0a0f;border-radius:16px;overflow:hidden;color:#fff;position:relative;width:100%;max-width:680px;}
+.grid-bg{position:absolute;top:0;left:0;right:0;bottom:0;background-image:linear-gradient(rgba(0,180,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,255,0.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;}
+.accent-bar{height:3px;width:100%;background:linear-gradient(90deg,#00b4ff,#00ffc6,#00b4ff);}
+.header{padding:28px 32px 20px;position:relative;}
+.brand-row{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+.logo-box{width:48px;height:48px;border-radius:10px;background:#00b4ff18;border:1px solid #00b4ff44;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:#00b4ff;letter-spacing:0.5px;}
+.brand-name{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#fff;letter-spacing:1.5px;text-transform:uppercase;}
+.brand-sub{font-size:11px;color:#00ffc6;letter-spacing:2px;text-transform:uppercase;font-weight:400;}
+.headline{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:34px;line-height:1.1;letter-spacing:0.5px;margin-bottom:8px;}
+.headline span{color:#00b4ff;}
+.headline .days{color:#00ffc6;}
+.tagline{font-size:13px;color:#aaa;font-weight:300;margin-bottom:20px;}
+.price-pill{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#00b4ff18,#00ffc618);border:1px solid #00b4ff44;border-radius:50px;padding:8px 20px;margin-bottom:6px;}
+.price-main{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:24px;color:#fff;}
+.price-gst{font-size:11px;color:#00ffc6;letter-spacing:0.5px;}
+.per-day{font-size:12px;color:#888;margin-left:4px;padding-left:12px;border-left:1px solid #333;}
+.divider{height:1px;background:linear-gradient(90deg,transparent,#00b4ff33,#00ffc633,transparent);margin:0 32px;}
+.highlight-row{display:flex;gap:6px;margin-top:16px;flex-wrap:wrap;}
+.tag-pill{background:#ffffff08;border:1px solid #ffffff12;border-radius:4px;padding:4px 10px;font-size:10px;color:#888;letter-spacing:0.5px;text-transform:uppercase;}
+.modules-section{padding:22px 32px;}
+.section-label{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#00b4ff;font-weight:500;margin-bottom:14px;}
+.modules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.module-card{background:#ffffff08;border:1px solid #ffffff0f;border-radius:10px;padding:14px 12px;position:relative;overflow:hidden;}
+.module-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:10px 10px 0 0;}
+.module-card.blue::before{background:#00b4ff;} .module-card.teal::before{background:#00ffc6;}
+.module-card.purple::before{background:#a78bfa;} .module-card.orange::before{background:#fb923c;}
+.module-card.pink::before{background:#f472b6;} .module-card.yellow::before{background:#facc15;}
+.module-name{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:14px;color:#fff;line-height:1.2;}
+.module-desc{font-size:10px;color:#666;margin-top:3px;line-height:1.4;}
+.bottom-section{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.batch-section{padding:20px 32px;border-right:1px solid #ffffff08;}
+.batch-list{display:flex;flex-direction:column;gap:12px;}
+.batch-item{display:flex;align-items:center;gap:10px;}
+.batch-dot{width:7px;height:7px;border-radius:50%;background:#00ffc6;flex-shrink:0;}
+.batch-time{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:13px;color:#ddd;}
+.batch-label{font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.8px;}
+.features-section{padding:20px 32px;}
+.feature-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;}
+.check{width:16px;height:16px;border-radius:50%;background:#00ffc618;border:1px solid #00ffc644;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.check-inner{width:6px;height:6px;border-radius:50%;background:#00ffc6;}
+.feature-text{font-size:12px;color:#bbb;line-height:1.5;}
+.footer-bar{background:#ffffff05;border-top:1px solid #ffffff0a;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;}
+.cta-text{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:13px;color:#00b4ff;letter-spacing:0.5px;text-transform:uppercase;}
+.enroll-badge{background:linear-gradient(90deg,#00b4ff,#00ffc6);border-radius:6px;padding:10px 24px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#000;letter-spacing:1px;text-transform:uppercase;text-decoration:none;display:inline-block;transition:opacity 0.2s;}
+.enroll-badge:hover{opacity:0.9;}
+</style>
+</head>
+<body>
+<div class="pamp-wrap">
+  <div class="grid-bg"></div>
+  <div class="accent-bar"></div>
+  <div class="header">
+    <div class="brand-row">
+      <div class="logo-box">NL</div>
+      <div>
+        <div class="brand-name">NISHLAB CREATIONS</div>
+        <div class="brand-sub">Engineering &amp; Design Training Institute</div>
+      </div>
+    </div>
+    <div class="headline">Land Your <span>Dream Job</span><br>in <span class="days">40 Days</span></div>
+    <div class="tagline">Industry-ready skills in CAD, Simulation &amp; Design — online, flexible, job-focused</div>
+    <div class="price-pill">
+      <div>
+        <div class="price-main">Rs.7,080 <span style="font-size:13px;color:#888;font-weight:400;">all inclusive</span></div>
+        <div class="price-gst">Rs.6,000 + 18% GST</div>
+      </div>
+      <div class="per-day">&#8776; Rs.177 / day</div>
+    </div>
+    <div class="highlight-row">
+      <span class="tag-pill">Online</span>
+      <span class="tag-pill">Session Recordings</span>
+      <span class="tag-pill">Certificate</span>
+      <span class="tag-pill">Resume Building</span>
+      <span class="tag-pill">Portfolio</span>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="modules-section">
+    <div class="section-label">What You Will Learn</div>
+    <div class="modules-grid">
+      <div class="module-card blue"><div class="module-name">AutoCAD</div><div class="module-desc">2D drafting &amp; technical drawings</div></div>
+      <div class="module-card teal"><div class="module-name">SolidWorks</div><div class="module-desc">3D modeling &amp; part design</div></div>
+      <div class="module-card purple"><div class="module-name">ANSYS</div><div class="module-desc">FEA simulation &amp; analysis</div></div>
+      <div class="module-card orange"><div class="module-name">Excel + VBA</div><div class="module-desc">Macros &amp; automation tools</div></div>
+      <div class="module-card pink"><div class="module-name">KeyShot</div><div class="module-desc">Product rendering &amp; visualization</div></div>
+      <div class="module-card yellow"><div class="module-name">Portfolio</div><div class="module-desc">Resume + job-ready showcase</div></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="bottom-section">
+    <div class="batch-section">
+      <div class="section-label">Batch Timings</div>
+      <div class="batch-list">
+        <div class="batch-item"><div class="batch-dot"></div><div><div class="batch-label">Morning</div><div class="batch-time">6:00 AM – 8:00 AM</div></div></div>
+        <div class="batch-item"><div class="batch-dot"></div><div><div class="batch-label">Afternoon</div><div class="batch-time">12:00 PM – 2:00 PM</div></div></div>
+        <div class="batch-item"><div class="batch-dot"></div><div><div class="batch-label">Afternoon</div><div class="batch-time">4:00 PM – 6:00 PM</div></div></div>
+        <div class="batch-item"><div class="batch-dot"></div><div><div class="batch-label">Evening</div><div class="batch-time">7:00 PM – 9:00 PM</div></div></div>
+      </div>
+    </div>
+    <div class="features-section">
+      <div class="section-label">Why NISHLAB</div>
+      <div class="feature-item"><div class="check"><div class="check-inner"></div></div><div class="feature-text">Live online sessions + recorded access</div></div>
+      <div class="feature-item"><div class="check"><div class="check-inner"></div></div><div class="feature-text">Industry-standard software training</div></div>
+      <div class="feature-item"><div class="check"><div class="check-inner"></div></div><div class="feature-text">Resume &amp; LinkedIn profile building</div></div>
+      <div class="feature-item"><div class="check"><div class="check-inner"></div></div><div class="feature-text">Job-ready portfolio creation</div></div>
+      <div class="feature-item"><div class="check"><div class="check-inner"></div></div><div class="feature-text">Completion certificate</div></div>
+      <div class="feature-item"><div class="check"><div class="check-inner"></div></div><div class="feature-text">Flexible batch — choose your slot</div></div>
+    </div>
+  </div>
+  <div class="accent-bar"></div>
+  <div class="footer-bar">
+    <div>
+      <div class="cta-text">Enroll Today — Limited Seats</div>
+      <div style="font-size:11px;color:#555;margin-top:2px;">Fill the form to reserve your spot</div>
+    </div>
+    <a href="https://forms.gle/pTMTrmsnFupG6dya6" target="_blank" class="enroll-badge">Enroll Now</a>
+  </div>
+</div>
+</body>
+</html>
