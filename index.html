@@ -1,1 +1,1179 @@
-DSD
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nishlab Creations | Industry-Oriented CAD & CAE Training Institute</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-bg { background: radial-gradient(ellipse at top, #1e293b 0%, #020617 50%, #000000 100%); }
+        .glass {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(14, 165, 233, 0.3);
+            border-color: rgba(14, 165, 233, 0.5);
+        }
+        .grid-pattern {
+            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .floating { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .marquee-container { overflow: hidden; white-space: nowrap; }
+        .marquee-content { display: inline-block; animation: marquee 30s linear infinite; }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .pulse-glow { animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(14, 165, 233, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(14, 165, 233, 0.6); }
+        }
+        .nav-hidden { transform: translateY(-100%); }
+        .nav-visible { transform: translateY(0); }
+        .course-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.8));
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+        .stat-number { font-variant-numeric: tabular-nums; }
+        .reveal { opacity: 0; transform: translateY(30px); }
+        .whatsapp-btn {
+            position: fixed; bottom: 30px; right: 30px; z-index: 50;
+            background: #25d366; color: white; padding: 16px; border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+        }
+        .whatsapp-btn:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6); }
+        .project-card { position: relative; overflow: hidden; }
+        .project-card::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(2, 6, 23, 0.9), transparent);
+            z-index: 1; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .project-card:hover::before { opacity: 1; }
+        .project-card .project-info {
+            position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+            transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .project-card:hover .project-info { transform: translateY(0); }
+        input:focus, textarea:focus, select:focus {
+            outline: none; border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+        }
+        /* Modal */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(2,6,23,0.85);
+            backdrop-filter: blur(8px); z-index: 100;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal-box {
+            background: #0f172a; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 1.5rem; max-width: 600px; width: 90%;
+            max-height: 85vh; overflow-y: auto;
+            transform: scale(0.95); transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-box { transform: scale(1); }
+        /* Pricing */
+        .price-badge {
+            background: linear-gradient(135deg, #0ea5e9, #818cf8);
+            padding: 2px; border-radius: 1rem;
+        }
+        .price-inner { background: #0f172a; border-radius: calc(1rem - 2px); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://api.whatsapp.com/send/?phone=918424099617&text=Hi%20Nishlab%20Creations!%20I'm%20interested%20in%20your%20CAD%20courses.&type=phone_number&app_absent=0" 
+       class="whatsapp-btn" target="_blank" rel="noopener" title="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- Course Detail Modal -->
+    <div id="courseModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-box p-8">
+            <div class="flex items-center justify-between mb-6">
+                <h3 id="modalTitle" class="font-display text-2xl font-bold text-white"></h3>
+                <button onclick="document.getElementById('courseModal').classList.remove('active')" 
+                        class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/20 transition-all">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 nav-hidden">
+        <div class="glass border-b border-white/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16 lg:h-20">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-lg flex items-center justify-center">
+                            <i data-lucide="box" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span class="font-display font-bold text-xl tracking-tight text-white">Nishlab<span class="text-sky-400">Creations</span></span>
+                    </div>
+                    <div class="hidden md:flex items-center gap-8">
+                        <a href="#home" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Home</a>
+                        <a href="#about" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">About</a>
+                        <a href="#courses" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Courses</a>
+                        <a href="#projects" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Projects</a>
+                        <a href="#testimonials" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Reviews</a>
+                        <a href="#contact" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Contact</a>
+                    </div>
+                    <a href="#enroll" class="hidden md:inline-flex items-center gap-2 px-6 py-2.5 bg-sky-500 hover:bg-sky-400 text-white text-sm font-semibold rounded-full transition-all hover:shadow-lg hover:shadow-sky-500/25">
+                        Enroll Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-300 hover:text-white">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden glass border-b border-white/5">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg">Home</a>
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg">About</a>
+                <a href="#courses" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg">Courses</a>
+                <a href="#projects" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg">Projects</a>
+                <a href="#testimonials" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg">Reviews</a>
+                <a href="#enroll" class="block px-3 py-2 text-base font-medium text-sky-400 hover:text-sky-300">Enroll Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center hero-bg overflow-hidden">
+        <div class="absolute inset-0 grid-pattern opacity-50"></div>
+        <div class="absolute top-20 left-10 w-72 h-72 bg-sky-500/10 rounded-full blur-3xl floating"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl floating" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-3xl"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 reveal">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-glow"></span>
+                <span class="text-sm font-medium text-slate-300">New Batch Starting Soon</span>
+            </div>
+            <h1 class="font-display text-5xl sm:text-6xl lg:text-8xl font-bold tracking-tight mb-6 reveal">
+                <span class="block text-white">Learn. Create.</span>
+                <span class="block gradient-text mt-2">Get Hired.</span>
+            </h1>
+            <p class="mt-6 text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed reveal">
+                Industry-Oriented <span class="text-sky-400 font-semibold">CAD & CAE</span> Training Institute.
+                Master AutoCAD, SolidWorks, CATIA, ANSYS, Python & VBA Automation with real industrial projects.
+            </p>
+            <div class="mt-8 flex flex-wrap justify-center gap-3 reveal">
+                <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium text-slate-300">AutoCAD</span>
+                <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium text-slate-300">SolidWorks</span>
+                <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium text-slate-300">CATIA</span>
+                <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium text-slate-300">ANSYS</span>
+                <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium text-slate-300">Python</span>
+                <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium text-slate-300">VBA</span>
+            </div>
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 reveal">
+                <a href="#enroll" class="group px-8 py-4 bg-sky-500 hover:bg-sky-400 text-white font-bold rounded-full transition-all hover:shadow-xl hover:shadow-sky-500/25 flex items-center gap-2">
+                    Enroll Now <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#courses" class="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold rounded-full transition-all flex items-center gap-2">
+                    Explore Courses <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </a>
+            </div>
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto reveal">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-white stat-number" data-target="500">0</div>
+                    <div class="text-sm text-slate-400 mt-1">Students Trained</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-white stat-number" data-target="98">0</div>
+                    <div class="text-sm text-slate-400 mt-1">% Placement Rate</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-white stat-number" data-target="50">0</div>
+                    <div class="text-sm text-slate-400 mt-1">Industrial Projects</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-white stat-number" data-target="6">0</div>
+                    <div class="text-sm text-slate-400 mt-1">Years Experience</div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="w-6 h-6 text-slate-500"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-sm font-medium mb-6">
+                        <i data-lucide="target" class="w-4 h-4"></i> Our Mission
+                    </div>
+                    <h2 class="font-display text-4xl lg:text-5xl font-bold text-white mb-6">
+                        Making Every Engineer <span class="gradient-text">Industry-Ready</span>
+                    </h2>
+                    <p class="text-lg text-slate-400 leading-relaxed mb-8">
+                        We bridge the gap between academic knowledge and industry requirements through practical design training,
+                        real industrial projects, automation tools, and comprehensive placement guidance.
+                    </p>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/5">
+                            <div class="w-10 h-10 rounded-lg bg-sky-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="briefcase" class="w-5 h-5 text-sky-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Industrial Projects</h4><p class="text-sm text-slate-400 mt-1">Real-world CAD/CAE projects</p></div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/5">
+                            <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="bot" class="w-5 h-5 text-purple-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Design Automation</h4><p class="text-sm text-slate-400 mt-1">VBA, Python & AI tools</p></div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/5">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="folder-check" class="w-5 h-5 text-emerald-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Portfolio Building</h4><p class="text-sm text-slate-400 mt-1">Professional project showcase</p></div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/5">
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="user-check" class="w-5 h-5 text-amber-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Interview Prep</h4><p class="text-sm text-slate-400 mt-1">Mock & technical rounds</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative reveal">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-2xl opacity-20 blur-2xl"></div>
+                    <div class="relative glass rounded-2xl p-8 border border-white/10">
+                        <h3 class="font-display text-2xl font-bold text-white mb-6">Why Choose Us?</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-sky-500/20 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i></div>
+                                <span class="text-slate-300">100% Practical Training Approach</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-sky-500/20 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i></div>
+                                <span class="text-slate-300">Live CAD Models & Simulations</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-sky-500/20 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i></div>
+                                <span class="text-slate-300">AI Integration for Engineers</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-sky-500/20 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i></div>
+                                <span class="text-slate-300">Resume & LinkedIn Optimization</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-sky-500/20 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i></div>
+                                <span class="text-slate-300">Affordable Fees with EMI Options</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-sky-500/20 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i></div>
+                                <span class="text-slate-300">Lifetime Recording Access</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Marquee -->
+    <section class="py-12 border-y border-white/5 bg-white/5">
+        <div class="marquee-container">
+            <div class="marquee-content flex items-center gap-16 px-8">
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-sky-400 transition-colors cursor-default">AutoCAD</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-red-400 transition-colors cursor-default">SolidWorks</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-blue-400 transition-colors cursor-default">CATIA V5</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-yellow-400 transition-colors cursor-default">ANSYS</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-green-400 transition-colors cursor-default">Python</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-emerald-400 transition-colors cursor-default">Excel VBA</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-purple-400 transition-colors cursor-default">KeyShot</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-pink-400 transition-colors cursor-default">AI Tools</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-sky-400 transition-colors cursor-default">AutoCAD</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-red-400 transition-colors cursor-default">SolidWorks</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-blue-400 transition-colors cursor-default">CATIA V5</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-yellow-400 transition-colors cursor-default">ANSYS</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-green-400 transition-colors cursor-default">Python</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-emerald-400 transition-colors cursor-default">Excel VBA</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-purple-400 transition-colors cursor-default">KeyShot</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-pink-400 transition-colors cursor-default">AI Tools</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-sm font-medium mb-6">
+                    <i data-lucide="graduation-cap" class="w-4 h-4"></i> Our Courses
+                </div>
+                <h2 class="font-display text-4xl lg:text-5xl font-bold text-white mb-4">Master <span class="gradient-text">Industry Tools</span></h2>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto">Comprehensive training programs designed by industry experts to make you job-ready from day one.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- AutoCAD -->
+                <div class="course-card rounded-2xl p-6 card-hover reveal group cursor-pointer" onclick="showCourseDetail('autocad')">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-red-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="pen-tool" class="w-7 h-7 text-red-400"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-slate-400 text-xs font-medium border border-white/10">45 Days</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-2">AutoCAD Professional</h3>
+                    <p class="text-slate-400 text-sm mb-4">Master 2D drafting, 3D modeling, dynamic blocks, and sheet sets for professional engineering documentation.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>2D Drafting & 3D Modeling</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Dynamic Blocks & Attributes</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Sheet Sets & Plotting</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-white/5 hover:bg-red-500/20 border border-white/10 hover:border-red-500/50 text-white font-medium transition-all flex items-center justify-center gap-2 group-hover:text-red-400">
+                        View Syllabus <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- SolidWorks -->
+                <div class="course-card rounded-2xl p-6 card-hover reveal group cursor-pointer" style="transition-delay: 100ms;" onclick="showCourseDetail('solidworks')">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-amber-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="box" class="w-7 h-7 text-amber-400"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-slate-400 text-xs font-medium border border-white/10">60 Days</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-2">SolidWorks Professional</h3>
+                    <p class="text-slate-400 text-sm mb-4">Complete part modeling, assemblies, sheet metal, surfacing, and macro automation training.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Part & Assembly Design</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Sheet Metal & Weldments</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Macros & Design Tables</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-white/5 hover:bg-amber-500/20 border border-white/10 hover:border-amber-500/50 text-white font-medium transition-all flex items-center justify-center gap-2 group-hover:text-amber-400">
+                        View Syllabus <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- CATIA -->
+                <div class="course-card rounded-2xl p-6 card-hover reveal group cursor-pointer" style="transition-delay: 200ms;" onclick="showCourseDetail('catia')">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-blue-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="layers" class="w-7 h-7 text-blue-400"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-slate-400 text-xs font-medium border border-white/10">60 Days</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-2">CATIA V5</h3>
+                    <p class="text-slate-400 text-sm mb-4">Industry-standard aerospace and automotive design tool covering sketcher, part design, and surface modeling.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Sketcher & Part Design</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Assembly & Drafting</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Surface Design (GSD)</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-white/5 hover:bg-blue-500/20 border border-white/10 hover:border-blue-500/50 text-white font-medium transition-all flex items-center justify-center gap-2 group-hover:text-blue-400">
+                        View Syllabus <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- ANSYS -->
+                <div class="course-card rounded-2xl p-6 card-hover reveal group cursor-pointer" onclick="showCourseDetail('ansys')">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-yellow-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="activity" class="w-7 h-7 text-yellow-400"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-slate-400 text-xs font-medium border border-white/10">45 Days</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-2">ANSYS Workbench</h3>
+                    <p class="text-slate-400 text-sm mb-4">Structural, thermal, modal, and CFD analysis using industry-leading simulation software.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Static Structural Analysis</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Modal & Thermal Analysis</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>CFD Basics & Fatigue</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-white/5 hover:bg-yellow-500/20 border border-white/10 hover:border-yellow-500/50 text-white font-medium transition-all flex items-center justify-center gap-2 group-hover:text-yellow-400">
+                        View Syllabus <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Python -->
+                <div class="course-card rounded-2xl p-6 card-hover reveal group cursor-pointer" style="transition-delay: 100ms;" onclick="showCourseDetail('python')">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-emerald-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="code-2" class="w-7 h-7 text-emerald-400"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-slate-400 text-xs font-medium border border-white/10">60 Days</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-2">Python for Engineers</h3>
+                    <p class="text-slate-400 text-sm mb-4">Automate CAD workflows, generate reports, and integrate AI tools with Python programming.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Excel & AutoCAD Automation</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>SolidWorks API Integration</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>AI & Report Generation</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-white/5 hover:bg-emerald-500/20 border border-white/10 hover:border-emerald-500/50 text-white font-medium transition-all flex items-center justify-center gap-2 group-hover:text-emerald-400">
+                        View Syllabus <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Excel VBA -->
+                <div class="course-card rounded-2xl p-6 card-hover reveal group cursor-pointer" style="transition-delay: 200ms;" onclick="showCourseDetail('excel')">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-green-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="table" class="w-7 h-7 text-green-400"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-slate-400 text-xs font-medium border border-white/10">30 Days</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-2">Excel for Engineers</h3>
+                    <p class="text-slate-400 text-sm mb-4">Advanced functions, dashboards, VBA automation, and UserForms for engineering calculations.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Advanced Functions & Dashboards</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>VBA Macros & UserForms</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Engineering Automation</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-white/5 hover:bg-green-500/20 border border-white/10 hover:border-green-500/50 text-white font-medium transition-all flex items-center justify-center gap-2 group-hover:text-green-400">
+                        View Syllabus <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Master Program CTA -->
+            <div class="mt-12 reveal">
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 p-8 lg:p-12">
+                    <div class="absolute inset-0 opacity-20" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRoLTJ2LTRoMnY0em0wLTZ2LTRoLTJ2NGgyem0tNiA2aC00djJoNHYtMnptMC02di00aC00djRoNHptLTYgNmgtNHYyaDR2LTJ6bTAtNnYtNGgtNHY0aDR6Ii8+PC9nPjwvZz48L3N2Zz4=')"></div>
+                    <div class="relative flex flex-col lg:flex-row items-center justify-between gap-8">
+                        <div class="text-center lg:text-left">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-sm font-medium mb-4">
+                                <i data-lucide="sparkles" class="w-4 h-4"></i> Master Program
+                            </div>
+                            <h3 class="font-display text-3xl lg:text-4xl font-bold text-white mb-2">Design Automation Master Program</h3>
+                            <p class="text-indigo-100 text-lg">AutoCAD + SolidWorks + ANSYS + Python + Excel VBA + KeyShot + AI Tools</p>
+                            <p class="text-white/80 mt-2 text-sm">60 Days • Live Sessions • Certificate • Placement Support</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="mb-3">
+                                <span class="text-white/60 line-through text-lg">₹15,000</span>
+                                <span class="text-white font-bold text-4xl ml-2">₹12,000</span>
+                                <span class="text-white/70 text-sm ml-1">+ GST</span>
+                            </div>
+                            <a href="#enroll" class="inline-flex px-8 py-4 bg-white text-indigo-600 font-bold rounded-full hover:bg-indigo-50 transition-all hover:shadow-xl items-center gap-2 whitespace-nowrap">
+                                Join Master Program <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </a>
+                            <p class="text-white/60 text-xs mt-2">EMI available • ₹4,000 seat lock</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 relative bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-sm font-medium mb-6">
+                    <i data-lucide="folder" class="w-4 h-4"></i> Industrial Projects
+                </div>
+                <h2 class="font-display text-4xl lg:text-5xl font-bold text-white mb-4">Real <span class="gradient-text">Industry Projects</span></h2>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto">Build a professional portfolio with industry-standard projects that employers actually want to see.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="project-card rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 h-64 flex items-center justify-center reveal group">
+                    <div class="text-center p-6">
+                        <i data-lucide="cog" class="w-12 h-12 text-sky-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="font-display text-lg font-bold text-white">Gearbox Design</h4>
+                        <p class="text-sm text-slate-400 mt-1">Complete 3D modeling & assembly</p>
+                    </div>
+                    <div class="project-info p-6">
+                        <h4 class="font-display text-lg font-bold text-white mb-2">Gearbox Design</h4>
+                        <p class="text-sm text-slate-300">Multi-stage gearbox with bearing selection, shaft design, and housing modeling using SolidWorks.</p>
+                    </div>
+                </div>
+                <div class="project-card rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 h-64 flex items-center justify-center reveal group" style="transition-delay: 100ms;">
+                    <div class="text-center p-6">
+                        <i data-lucide="move-horizontal" class="w-12 h-12 text-amber-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="font-display text-lg font-bold text-white">Conveyor Design</h4>
+                        <p class="text-sm text-slate-400 mt-1">Material handling system</p>
+                    </div>
+                    <div class="project-info p-6">
+                        <h4 class="font-display text-lg font-bold text-white mb-2">Conveyor Design</h4>
+                        <p class="text-sm text-slate-300">Industrial belt conveyor with motor selection, frame design, and assembly using AutoCAD & SolidWorks.</p>
+                    </div>
+                </div>
+                <div class="project-card rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 h-64 flex items-center justify-center reveal group" style="transition-delay: 200ms;">
+                    <div class="text-center p-6">
+                        <i data-lucide="box-select" class="w-12 h-12 text-purple-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="font-display text-lg font-bold text-white">Sheet Metal Enclosure</h4>
+                        <p class="text-sm text-slate-400 mt-1">Precision fabrication design</p>
+                    </div>
+                    <div class="project-info p-6">
+                        <h4 class="font-display text-lg font-bold text-white mb-2">Sheet Metal Enclosure</h4>
+                        <p class="text-sm text-slate-300">Electronic enclosure with bends, punches, and flat pattern development using SolidWorks Sheet Metal.</p>
+                    </div>
+                </div>
+                <div class="project-card rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 h-64 flex items-center justify-center reveal group">
+                    <div class="text-center p-6">
+                        <i data-lucide="cylinder" class="w-12 h-12 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="font-display text-lg font-bold text-white">Pressure Vessel</h4>
+                        <p class="text-sm text-slate-400 mt-1">ASME standard design</p>
+                    </div>
+                    <div class="project-info p-6">
+                        <h4 class="font-display text-lg font-bold text-white mb-2">Pressure Vessel</h4>
+                        <p class="text-sm text-slate-300">Design and FEA validation with nozzle, saddle support using ANSYS Workbench.</p>
+                    </div>
+                </div>
+                <div class="project-card rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 h-64 flex items-center justify-center reveal group" style="transition-delay: 100ms;">
+                    <div class="text-center p-6">
+                        <i data-lucide="layout-template" class="w-12 h-12 text-emerald-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="font-display text-lg font-bold text-white">Machine Frames</h4>
+                        <p class="text-sm text-slate-400 mt-1">Structural weldment design</p>
+                    </div>
+                    <div class="project-info p-6">
+                        <h4 class="font-display text-lg font-bold text-white mb-2">Machine Frames</h4>
+                        <p class="text-sm text-slate-300">Industrial machine base frame with weldment profiles, structural analysis, and GD&T documentation.</p>
+                    </div>
+                </div>
+                <div class="project-card rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 h-64 flex items-center justify-center reveal group" style="transition-delay: 200ms;">
+                    <div class="text-center p-6">
+                        <i data-lucide="file-spreadsheet" class="w-12 h-12 text-green-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="font-display text-lg font-bold text-white">BOM Generator</h4>
+                        <p class="text-sm text-slate-400 mt-1">Excel VBA automation</p>
+                    </div>
+                    <div class="project-info p-6">
+                        <h4 class="font-display text-lg font-bold text-white mb-2">BOM Generator</h4>
+                        <p class="text-sm text-slate-300">Automated Bill of Materials extraction from CAD models using Excel VBA and Python scripting.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center reveal">
+                <p class="text-slate-400">And many more: Mold Plates, Fixture & Jig Design, Drawing Automation, GD&T Projects, Automation Dashboards</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio & Placement -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="reveal">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-6">
+                        <i data-lucide="briefcase" class="w-4 h-4"></i> Student Portfolio
+                    </div>
+                    <h2 class="font-display text-4xl font-bold text-white mb-6">Everything You Need to <span class="gradient-text">Get Hired</span></h2>
+                    <p class="text-slate-400 mb-8">Every student receives a complete professional package to stand out in job applications.</p>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-500/30 transition-colors">
+                            <i data-lucide="file-text" class="w-5 h-5 text-emerald-400"></i><span class="text-slate-300 text-sm font-medium">Professional Resume</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-500/30 transition-colors">
+                            <i data-lucide="linkedin" class="w-5 h-5 text-emerald-400"></i><span class="text-slate-300 text-sm font-medium">LinkedIn Optimization</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-500/30 transition-colors">
+                            <i data-lucide="globe" class="w-5 h-5 text-emerald-400"></i><span class="text-slate-300 text-sm font-medium">Portfolio Website</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-500/30 transition-colors">
+                            <i data-lucide="folder-open" class="w-5 h-5 text-emerald-400"></i><span class="text-slate-300 text-sm font-medium">CAD Project Files</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-500/30 transition-colors">
+                            <i data-lucide="file-image" class="w-5 h-5 text-emerald-400"></i><span class="text-slate-300 text-sm font-medium">Render Images</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-500/30 transition-colors">
+                            <i data-lucide="drafting-compass" class="w-5 h-5 text-emerald-400"></i><span class="text-slate-300 text-sm font-medium">Engineering Drawings</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium mb-6">
+                        <i data-lucide="users" class="w-4 h-4"></i> Placement Support
+                    </div>
+                    <h2 class="font-display text-4xl font-bold text-white mb-6">Complete <span class="gradient-text">Placement Assistance</span></h2>
+                    <p class="text-slate-400 mb-8">We don't just teach — we ensure you land your dream job with comprehensive support.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="message-square" class="w-5 h-5 text-amber-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Mock Interviews</h4><p class="text-sm text-slate-400 mt-1">HR and technical mock sessions with industry experts</p></div>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="search" class="w-5 h-5 text-amber-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Job Portal Support</h4><p class="text-sm text-slate-400 mt-1">Profile creation on Naukri, LinkedIn, and Indeed</p></div>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="eye" class="w-5 h-5 text-amber-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Portfolio Review</h4><p class="text-sm text-slate-400 mt-1">Detailed feedback on projects and presentations</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-24 relative bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-sm font-medium mb-6">
+                    <i data-lucide="star" class="w-4 h-4"></i> Student Reviews
+                </div>
+                <h2 class="font-display text-4xl lg:text-5xl font-bold text-white mb-4">What Our <span class="gradient-text">Students Say</span></h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass rounded-2xl p-6 card-hover reveal">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm mb-4">"Practical teaching approach with real industrial projects. The SolidWorks training helped me secure a design engineer position."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-sky-400 to-indigo-500 flex items-center justify-center text-white font-bold text-sm">RK</div>
+                        <div><div class="text-white font-medium text-sm">Rahul K.</div><div class="text-slate-500 text-xs">Design Engineer</div></div>
+                    </div>
+                </div>
+                <div class="glass rounded-2xl p-6 card-hover reveal" style="transition-delay: 100ms;">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm mb-4">"Excellent industrial knowledge shared during ANSYS training. The FEA concepts were explained with actual case studies."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-bold text-sm">AP</div>
+                        <div><div class="text-white font-medium text-sm">Ankit P.</div><div class="text-slate-500 text-xs">CAE Engineer</div></div>
+                    </div>
+                </div>
+                <div class="glass rounded-2xl p-6 card-hover reveal" style="transition-delay: 200ms;">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm mb-4">"The Python automation course transformed my workflow. I now automate CAD tasks that used to take hours into minutes."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center text-white font-bold text-sm">SM</div>
+                        <div><div class="text-white font-medium text-sm">Sneha M.</div><div class="text-slate-500 text-xs">Automation Engineer</div></div>
+                    </div>
+                </div>
+                <div class="glass rounded-2xl p-6 card-hover reveal" style="transition-delay: 300ms;">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm mb-4">"Job-ready training with amazing support. Portfolio building and interview prep were game changers for my career."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold text-sm">VJ</div>
+                        <div><div class="text-white font-medium text-sm">Vikas J.</div><div class="text-slate-500 text-xs">Product Designer</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Resources -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-6">
+                    <i data-lucide="download" class="w-4 h-4"></i> Free Resources
+                </div>
+                <h2 class="font-display text-4xl lg:text-5xl font-bold text-white mb-4">Download <span class="gradient-text">Learning Materials</span></h2>
+                <p class="text-lg text-slate-400">Free resources to kickstart your engineering journey</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <a href="#" class="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-sky-500/50 hover:bg-sky-500/5 transition-all reveal">
+                    <i data-lucide="file-question" class="w-8 h-8 text-sky-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-semibold text-white mb-1">CAD Interview Questions</h4>
+                    <p class="text-sm text-slate-400">200+ questions with answers</p>
+                </a>
+                <a href="#" class="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-500/50 hover:bg-amber-500/5 transition-all reveal" style="transition-delay: 100ms;">
+                    <i data-lucide="pencil-ruler" class="w-8 h-8 text-amber-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-semibold text-white mb-1">SolidWorks Drawings</h4>
+                    <p class="text-sm text-slate-400">Practice exercises & parts</p>
+                </a>
+                <a href="#" class="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all reveal" style="transition-delay: 200ms;">
+                    <i data-lucide="file-spreadsheet" class="w-8 h-8 text-emerald-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-semibold text-white mb-1">Excel Templates</h4>
+                    <p class="text-sm text-slate-400">Engineering calculators</p>
+                </a>
+                <a href="#" class="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/50 hover:bg-purple-500/5 transition-all reveal" style="transition-delay: 300ms;">
+                    <i data-lucide="code" class="w-8 h-8 text-purple-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-semibold text-white mb-1">Python Scripts</h4>
+                    <p class="text-sm text-slate-400">CAD automation scripts</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Enroll Section -->
+    <section id="contact" class="py-24 relative bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="reveal">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-sm font-medium mb-6">
+                        <i data-lucide="mail" class="w-4 h-4"></i> Get In Touch
+                    </div>
+                    <h2 class="font-display text-4xl font-bold text-white mb-6">Start Your <span class="gradient-text">Journey Today</span></h2>
+                    <p class="text-slate-400 mb-8">Ready to become an industry-ready engineer? Contact us for course details, fee structure, and batch schedules.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-sky-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-sky-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Location</h4><p class="text-slate-400">Mumbai / Online, Maharashtra, India</p></div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="phone" class="w-6 h-6 text-emerald-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Phone / WhatsApp</h4><p class="text-slate-400">+91 84240 99617</p></div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="mail" class="w-6 h-6 text-purple-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Email</h4><p class="text-slate-400">nishad@nishlabcreations.com</p></div>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex gap-4">
+                        <a href="https://www.youtube.com/@NishlabCreations-w5h" target="_blank" rel="noopener" class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-red-500 hover:border-red-500/30 transition-all">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/nishlab-creations/" target="_blank" rel="noopener" class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-blue-500 hover:border-blue-500/30 transition-all">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://www.instagram.com/nishlabcreations/" target="_blank" rel="noopener" class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-pink-500 hover:border-pink-500/30 transition-all">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://api.whatsapp.com/send/?phone=918424099617&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-green-500 hover:border-green-500/30 transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Enroll Form -->
+                <div id="enroll" class="reveal">
+                    <div class="glass rounded-2xl p-8 border border-white/10">
+                        <h3 class="font-display text-2xl font-bold text-white mb-2">THANKYOU FOR CONNECTING US.</h3>
+                        <p class="text-slate-400 text-sm mb-6">We'll contact you within 24 hours.</p>
+                        
+                        <div id="enrollSuccess" class="hidden text-center py-8">
+                            <div class="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
+                                <i data-lucide="check-circle" class="w-8 h-8 text-emerald-400"></i>
+                            </div>
+                            <h4 class="font-display text-xl font-bold text-white mb-2">Application Received!</h4>
+                            <p class="text-slate-400">We'll reach out to you on WhatsApp within 24 hours.</p>
+                            <a href="https://api.whatsapp.com/send/?phone=918424099617&text=Hi+I+just+enrolled+on+your+website%21+Please+share+batch+details.&type=phone_number&app_absent=0" 
+                               target="_blank" rel="noopener"
+                               class="inline-flex items-center gap-2 mt-4 px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-white font-semibold rounded-full transition-all">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                Chat on WhatsApp
+                            </a>
+                        </div>
+
+                        <form id="enrollForm" class="space-y-4" onsubmit="handleEnroll(event)">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-300 mb-2">Full Name *</label>
+                                    <input type="text" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:border-sky-500 transition-colors" placeholder="Your Name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-300 mb-2">Phone / WhatsApp *</label>
+                                    <input type="tel" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:border-sky-500 transition-colors" placeholder="+91 98765 43210">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Email Address *</label>
+                                <input type="email" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:border-sky-500 transition-colors" placeholder="you@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Course Interested In *</label>
+                                <select required class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-white/10 text-white focus:border-sky-500 transition-colors appearance-none cursor-pointer">
+                                    <option value="" disabled selected>Select a course</option>
+                                    <option value="master">Design Automation Master Program (₹12,000)</option>
+                                    <option value="solidworks">SolidWorks Professional (60 Days)</option>
+                                    <option value="autocad">AutoCAD Professional (45 Days)</option>
+                                    <option value="ansys">ANSYS Workbench (45 Days)</option>
+                                    <option value="catia">CATIA V5 (60 Days)</option>
+                                    <option value="python">Python for Engineers (60 Days)</option>
+                                    <option value="excel">Excel for Engineers (30 Days)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Education / Background</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:border-sky-500 transition-colors" placeholder="e.g. B.E. Mechanical, Working Professional">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Message (Optional)</label>
+                                <textarea rows="3" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:border-sky-500 transition-colors resize-none" placeholder="Any specific questions or goals?"></textarea>
+                            </div>
+
+                            <!-- Pricing Info -->
+                            <div class="p-4 rounded-xl bg-sky-500/10 border border-sky-500/20">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-slate-300 text-sm font-medium">Master Program Fee</span>
+                                    <div>
+                                        <span class="text-slate-500 line-through text-sm">₹15,000</span>
+                                        <span class="text-sky-400 font-bold text-lg ml-2">₹12,000</span>
+                                        <span class="text-slate-400 text-xs">+ GST</span>
+                                    </div>
+                                </div>
+                                <p class="text-slate-400 text-xs">💳 EMI: ₹4,000 seat lock → ₹4,000 at Day 20 → ₹4,000 at Day 40</p>
+                            </div>
+
+                            <div id="formError" class="hidden text-red-400 text-sm p-3 rounded-xl bg-red-500/10 border border-red-500/20"></div>
+                            <button type="submit" class="w-full py-4 bg-sky-500 hover:bg-sky-400 text-white font-bold rounded-xl transition-all hover:shadow-lg hover:shadow-sky-500/25 flex items-center justify-center gap-2">
+                                Submit Enrollment Request
+                                <i data-lucide="send" class="w-5 h-5"></i>
+                            </button>
+                            <p class="text-center text-slate-500 text-xs">Or WhatsApp directly: <a href="https://api.whatsapp.com/send/?phone=918424099617&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="text-sky-400 hover:underline">+91 84240 99617</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-lg flex items-center justify-center">
+                            <i data-lucide="box" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span class="font-display font-bold text-xl text-white">Nishlab<span class="text-sky-400">Creations</span></span>
+                    </div>
+                    <p class="text-slate-400 text-sm max-w-xs">Industry-oriented CAD & CAE training institute making every engineer job-ready through practical, project-based learning.</p>
+                    <p class="text-slate-500 text-xs mt-4">MSME Registered • Udyam Certified</p>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-white mb-4">Courses</h5>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">AutoCAD Professional</a></li>
+                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">SolidWorks Professional</a></li>
+                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">CATIA V5</a></li>
+                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">ANSYS Workbench</a></li>
+                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">Python for Engineers</a></li>
+                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">Excel for Engineers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-white mb-4">Quick Links</h5>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#about" class="hover:text-sky-400 transition-colors">About Us</a></li>
+                        <li><a href="#projects" class="hover:text-sky-400 transition-colors">Projects</a></li>
+                        <li><a href="#testimonials" class="hover:text-sky-400 transition-colors">Reviews</a></li>
+                        <li><a href="#enroll" class="hover:text-sky-400 transition-colors">Enroll Now</a></li>
+                        <li><a href="https://api.whatsapp.com/send/?phone=918424099617&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="hover:text-sky-400 transition-colors">WhatsApp Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-slate-500 text-sm">© 2025 Nishlab Creations. All rights reserved.</p>
+                <p class="text-slate-500 text-sm">Made with ❤️ for Engineers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons (safe check in case CDN is blocked)
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        } else {
+            console.warn('Lucide failed to load — icons will not render. Check network/ad-blocker.');
+        }
+
+        // Navbar scroll behavior
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.remove('nav-hidden');
+                navbar.classList.add('nav-visible');
+            } else {
+                navbar.classList.add('nav-hidden');
+                navbar.classList.remove('nav-visible');
+            }
+        });
+        // Show nav on load after delay
+        setTimeout(() => {
+            navbar.classList.remove('nav-hidden');
+            navbar.classList.add('nav-visible');
+        }, 500);
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Counter animation
+        function animateCounter(el, target, suffix='') {
+            let start = 0;
+            const duration = 2000;
+            const step = (timestamp) => {
+                if (!start) start = timestamp;
+                const progress = Math.min((timestamp - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.floor(eased * target) + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+                else el.textContent = target + suffix;
+            };
+            requestAnimationFrame(step);
+        }
+
+        // Scroll reveal + counter trigger
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    
+                    // Trigger counters if stat elements
+                    const stats = entry.target.querySelectorAll('.stat-number[data-target]');
+                    stats.forEach(stat => {
+                        const target = parseInt(stat.getAttribute('data-target'));
+                        const suffix = target === 98 ? '%' : target === 6 ? '+' : '+';
+                        animateCounter(stat, target, suffix);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Course syllabus data
+        const courseData = {
+            autocad: {
+                title: 'AutoCAD Professional — 45 Days',
+                color: 'red',
+                modules: [
+                    { week: 'Week 1–2', title: 'Drafting Fundamentals', topics: ['Interface, UCS, coordinate systems', '2D drawing commands: Line, Circle, Arc, Polygon', 'Layers, Linetypes, Properties', 'Precision drawing with OSNAP, ORTHO, POLAR'] },
+                    { week: 'Week 3–4', title: 'Editing & Annotation', topics: ['Edit commands: Trim, Extend, Offset, Mirror, Array', 'Dimensions, Leaders, Text, Tables', 'Dynamic Blocks with Parameters & Actions', 'Attributes & data extraction'] },
+                    { week: 'Week 5–6', title: '3D & Output', topics: ['3D solid modeling: Extrude, Revolve, Sweep, Loft', 'Sheet Sets for multi-drawing management', 'Plotting and PDF output with title blocks', 'Industry project: Machine Component Drawing Set'] }
+                ]
+            },
+            solidworks: {
+                title: 'SolidWorks Professional — 60 Days',
+                color: 'amber',
+                modules: [
+                    { week: 'Week 1–2', title: 'Part Modeling', topics: ['Sketch constraints and relations', 'Boss/Base Extrude, Cut, Revolve, Sweep, Loft', 'Fillets, Chamfers, Patterns (Linear/Circular)', 'Design Intent and Feature Tree management'] },
+                    { week: 'Week 3–4', title: 'Assembly & Drawings', topics: ['Mates: Coincident, Concentric, Distance, Angle', 'Exploded views and animations', 'Drawing views, BOM, balloons, GD&T', 'Sheet Metal: K-factor, flat patterns, forming tools'] },
+                    { week: 'Week 5–6', title: 'Advanced & Automation', topics: ['Weldments with custom profiles', 'Surfacing: Boundary, Filled, Knit surfaces', 'Design Tables linked to Excel', 'Macro recording and VBA automation', 'Industry Project: Gearbox full assembly'] }
+                ]
+            },
+            catia: {
+                title: 'CATIA V5 — 60 Days',
+                color: 'blue',
+                modules: [
+                    { week: 'Week 1–2', title: 'Sketcher & Part Design', topics: ['Sketcher workbench: profiles, constraints', 'Pad, Pocket, Shaft, Groove features', 'Dress-up features: Fillet, Chamfer, Draft', 'Boolean operations: Assemble, Add, Remove'] },
+                    { week: 'Week 3–4', title: 'Assembly & Drafting', topics: ['Product structure and component insertion', 'Constraints: Fix, Coincidence, Offset', 'Interference and clash detection', 'Generative Drafting: views, sections, dimensions'] },
+                    { week: 'Week 5–6', title: 'Surface Design (GSD)', topics: ['Wireframe: Lines, Planes, Projections', 'Surface: Extrude, Revolve, Sweep, Loft', 'Join, Trim, Heal, Offset surfaces', 'Closing solids from surfaces', 'Industry Project: Automotive body panel'] }
+                ]
+            },
+            ansys: {
+                title: 'ANSYS Workbench — 45 Days',
+                color: 'yellow',
+                modules: [
+                    { week: 'Week 1–2', title: 'FEA Fundamentals', topics: ['FEM theory: elements, nodes, DOF', 'Geometry import and SpaceClaim editing', 'Meshing: Hex, Tet, Inflation layers', 'Boundary conditions and loads'] },
+                    { week: 'Week 3–4', title: 'Analysis Types', topics: ['Static Structural: stress, strain, deformation', 'Modal Analysis: natural frequencies, mode shapes', 'Steady-State Thermal: heat flux, temperature', 'Thermal-Structural coupling'] },
+                    { week: 'Week 5–6', title: 'Advanced Analysis', topics: ['CFD with Fluent: pipe flow, heat exchanger', 'Fatigue Analysis: S-N curves, safety factor', 'Post-processing: probes, charts, animations', 'Industry Project: Pressure vessel FEA report'] }
+                ]
+            },
+            python: {
+                title: 'Python for Engineers — 60 Days',
+                color: 'emerald',
+                modules: [
+                    { week: 'Week 1–2', title: 'Python Core', topics: ['Syntax, data types, control flow, functions', 'File handling: CSV, Excel (openpyxl, pandas)', 'NumPy for engineering calculations', 'Matplotlib for data visualization'] },
+                    { week: 'Week 3–4', title: 'CAD Automation', topics: ['AutoCAD automation via pyautocad/COM', 'SolidWorks API via win32com', 'Excel report generation with xlwings', 'PDF generation and email automation'] },
+                    { week: 'Week 5–6', title: 'AI Integration', topics: ['Web scraping with BeautifulSoup', 'OpenAI/local LLM API integration', 'Voice agent for PC control', 'Capstone: Full CAD workflow automation script'] }
+                ]
+            },
+            excel: {
+                title: 'Excel for Engineers — 30 Days',
+                color: 'green',
+                modules: [
+                    { week: 'Week 1', title: 'Advanced Functions', topics: ['VLOOKUP, INDEX/MATCH, XLOOKUP', 'IF, IFERROR, nested logic formulas', 'Pivot Tables and dynamic charts', 'Conditional formatting and data validation'] },
+                    { week: 'Week 2', title: 'Dashboards', topics: ['Engineering calculation templates', 'Interactive dashboards with slicers', 'Named ranges and dynamic arrays', 'Power Query for data import'] },
+                    { week: 'Week 3–4', title: 'VBA Automation', topics: ['Macro recording and VBA editor', 'Variables, loops, conditions in VBA', 'UserForms for data entry', 'BOM generator and drawing register automation', 'Industry Project: Engineering dashboard + automation'] }
+                ]
+            }
+        };
+
+        const colorMap = {
+            red: { bg: 'bg-red-500/20', text: 'text-red-400', border: 'border-red-500/30' },
+            amber: { bg: 'bg-amber-500/20', text: 'text-amber-400', border: 'border-amber-500/30' },
+            blue: { bg: 'bg-blue-500/20', text: 'text-blue-400', border: 'border-blue-500/30' },
+            yellow: { bg: 'bg-yellow-500/20', text: 'text-yellow-400', border: 'border-yellow-500/30' },
+            emerald: { bg: 'bg-emerald-500/20', text: 'text-emerald-400', border: 'border-emerald-500/30' },
+            green: { bg: 'bg-green-500/20', text: 'text-green-400', border: 'border-green-500/30' }
+        };
+
+        function showCourseDetail(courseId) {
+            const data = courseData[courseId];
+            const c = colorMap[data.color];
+            document.getElementById('modalTitle').textContent = data.title;
+            
+            let html = '<div class="space-y-4">';
+            data.modules.forEach(mod => {
+                html += `
+                <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="px-2 py-1 rounded-lg ${c.bg} ${c.text} text-xs font-semibold">${mod.week}</span>
+                        <h4 class="font-semibold text-white">${mod.title}</h4>
+                    </div>
+                    <ul class="space-y-1.5">
+                        ${mod.topics.map(t => `<li class="flex items-start gap-2 text-sm text-slate-300"><span class="${c.text} mt-0.5">▸</span>${t}</li>`).join('')}
+                    </ul>
+                </div>`;
+            });
+            html += `</div>
+            <a href="#enroll" onclick="document.getElementById('courseModal').classList.remove('active')" 
+               class="mt-6 w-full py-3 flex items-center justify-center gap-2 ${c.bg} ${c.text} font-semibold rounded-xl border ${c.border} hover:opacity-90 transition-all">
+               Enroll for This Course <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>`;
+            
+            document.getElementById('modalContent').innerHTML = html;
+            document.getElementById('courseModal').classList.add('active');
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        function closeModal(e) {
+            if (e.target === document.getElementById('courseModal')) {
+                document.getElementById('courseModal').classList.remove('active');
+            }
+        }
+
+        // Enroll form
+        // ⚠️ Replace with your deployed Apps Script Web App URL
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwXQoeVk589S8szq3vRdr_iLpoh8gvKJVAtUVI3RMQ8i6oJn4TdA6Jq1XhGCVdmpDloBQ/exec';
+
+        async function handleEnroll(e) {
+            e.preventDefault();
+            const form = document.getElementById('enrollForm');
+            const success = document.getElementById('enrollSuccess');
+            const btn = form.querySelector('button[type=submit]');
+            const errorDiv = document.getElementById('formError');
+
+            // Collect form values in order
+            const inputs = form.querySelectorAll('input, select, textarea');
+            const data = {
+                name:      inputs[0].value.trim(),
+                phone:     inputs[1].value.trim(),
+                email:     inputs[2].value.trim(),
+                course:    inputs[3].value,
+                education: inputs[4].value.trim(),
+                message:   inputs[5].value.trim()
+            };
+
+            // Loading state
+            btn.disabled = true;
+            btn.innerHTML = '<svg class="animate-spin w-5 h-5 mr-2 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>Submitting...';
+            if (errorDiv) errorDiv.classList.add('hidden');
+
+            try {
+                const formData = new FormData();
+                Object.keys(data).forEach(key => formData.append(key, data[key]));
+
+                await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formData
+                });
+                form.classList.add('hidden');
+                success.classList.remove('hidden');
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+
+            } catch (err) {
+                btn.disabled = false;
+                btn.innerHTML = 'Submit Enrollment Request';
+                if (errorDiv) {
+                    errorDiv.textContent = '⚠️ Submission failed. Please WhatsApp us directly at +91 84240 99617';
+                    errorDiv.classList.remove('hidden');
+                }
+            }
+        }
+
+        // GSAP scroll animations
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.from('.hero-bg h1', { y: 50, opacity: 0, duration: 1, delay: 0.3, ease: 'power3.out' });
+        gsap.from('.hero-bg p', { y: 30, opacity: 0, duration: 1, delay: 0.5, ease: 'power3.out' });
+    </script>
+</body>
+</html>
