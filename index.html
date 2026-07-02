@@ -1,296 +1,1177 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>NISHLAB CREATIONS — Land Your Dream Job in 40 Days</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<style>
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:#060610;font-family:'Syne',sans-serif;color:#fff;min-height:100vh;}
-
-/* TOPBAR */
-.topbar{background:#ff2d2d;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:10px;position:sticky;top:0;z-index:100;}
-.topbar-text{font-size:12px;font-weight:700;letter-spacing:2px;color:#fff;text-transform:uppercase;}
-.pulse-dot{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse 1s infinite;flex-shrink:0;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.7);}}
-
-/* HERO */
-.hero{padding:48px 28px 32px;position:relative;overflow:hidden;max-width:600px;margin:0 auto;}
-.grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(0,180,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,255,0.04) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;}
-.brand-row{display:flex;align-items:center;gap:14px;margin-bottom:28px;position:relative;}
-.logo{width:54px;height:54px;border-radius:10px;background:#fff;border:1px solid #00b4ff44;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;}
-.logo img{width:50px;height:50px;object-fit:contain;}
-.brand-info .name{font-weight:800;font-size:15px;letter-spacing:1px;text-transform:uppercase;}
-.brand-info .sub{font-size:9px;color:#00ffc6;letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
-
-.badge-row{display:flex;gap:6px;margin-bottom:22px;flex-wrap:wrap;position:relative;}
-.badge{background:#ff2d2d22;border:1px solid #ff2d2d66;border-radius:4px;padding:3px 10px;font-size:9px;color:#ff6b6b;letter-spacing:1px;text-transform:uppercase;font-weight:700;}
-.badge.cyan{background:#00b4ff18;border-color:#00b4ff44;color:#00b4ff;}
-
-.hero-headline{font-family:'Orbitron',monospace;font-size:32px;font-weight:900;line-height:1.1;margin-bottom:10px;position:relative;}
-.hero-headline .accent{color:#00b4ff;}
-.hero-headline .days{color:#00ffc6;}
-.hero-sub{font-size:13px;color:#888;margin-bottom:28px;font-weight:400;position:relative;line-height:1.6;}
-
-/* COUNTDOWN */
-.countdown-wrap{background:#0d0d1a;border:1px solid #ff2d2d44;border-radius:14px;padding:18px 22px;margin-bottom:28px;position:relative;}
-.countdown-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:#ff4444;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:6px;}
-.fire{width:8px;height:8px;border-radius:50%;background:#ff4444;animation:pulse 0.8s infinite;}
-.countdown-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
-.cd-box{background:#060610;border:1px solid #1a1a2e;border-radius:8px;padding:12px 6px;text-align:center;}
-.cd-num{font-family:'Orbitron',monospace;font-size:28px;font-weight:900;color:#fff;line-height:1;display:block;}
-.cd-lbl{font-size:8px;color:#444;letter-spacing:1.5px;text-transform:uppercase;margin-top:4px;display:block;}
-.cd-box.hours .cd-num{color:#ff4444;}
-.cd-box.mins .cd-num{color:#ff6b2b;}
-.cd-box.secs .cd-num{color:#ffaa00;}
-
-/* OFFER STRIP */
-.offer-strip{background:#ff2d2d12;border:1px solid #ff2d2d33;border-radius:10px;padding:12px 16px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
-.price-old{font-size:13px;color:#555;text-decoration:line-through;font-family:'Orbitron',monospace;}
-.price-new{font-family:'Orbitron',monospace;font-size:24px;font-weight:900;color:#fff;}
-.price-gst{font-size:9px;color:#666;margin-top:2px;}
-.per-day-tag{background:#00ffc618;border:1px solid #00ffc633;border-radius:20px;padding:6px 14px;font-size:10px;color:#00ffc6;font-weight:700;white-space:nowrap;}
-
-/* SECTIONS */
-.section{padding:0 28px 28px;max-width:600px;margin:0 auto;}
-.sec-title{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:#00b4ff;font-weight:700;margin-bottom:14px;}
-
-/* MODULES */
-.modules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
-.mod-card{background:#0d0d1a;border:1px solid #1a1a2e;border-radius:8px;padding:12px;border-top:2px solid;}
-.mod-card.c1{border-top-color:#00b4ff;}.mod-card.c2{border-top-color:#00ffc6;}.mod-card.c3{border-top-color:#a78bfa;}
-.mod-card.c4{border-top-color:#fb923c;}.mod-card.c5{border-top-color:#f472b6;}.mod-card.c6{border-top-color:#facc15;}
-.mod-name{font-size:11px;font-weight:700;color:#fff;margin-bottom:2px;}
-.mod-desc{font-size:9px;color:#555;line-height:1.4;}
-
-/* COMPARE */
-.compare-table{width:100%;border-collapse:collapse;}
-.compare-table th{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#555;padding:8px 10px;border-bottom:1px solid #1a1a2e;text-align:left;}
-.compare-table td{font-size:11px;padding:10px 10px;border-bottom:1px solid #0d0d1a;vertical-align:middle;}
-.compare-table td:first-child{color:#aaa;}
-.compare-table td:nth-child(2){color:#ff4444;font-family:'Orbitron',monospace;font-weight:700;}
-.compare-table td:last-child{color:#00ffc6;font-family:'Orbitron',monospace;font-weight:700;}
-.compare-table .highlight-row td:last-child{background:#00ffc608;border-radius:4px;}
-
-/* BATCHES */
-.batch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
-.batch-item{background:#0d0d1a;border:1px solid #1a1a2e;border-radius:8px;padding:12px 14px;display:flex;align-items:center;gap:10px;}
-.batch-dot{width:8px;height:8px;border-radius:50%;background:#00ffc6;flex-shrink:0;}
-.batch-lbl{font-size:8px;color:#555;text-transform:uppercase;letter-spacing:1px;}
-.batch-time{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;color:#ddd;margin-top:2px;}
-
-/* FEATURES */
-.features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;}
-.feat-item{display:flex;align-items:center;gap:8px;background:#0d0d1a;border:1px solid #1a1a2e;border-radius:6px;padding:10px 12px;}
-.feat-check{width:16px;height:16px;border-radius:50%;background:#00ffc618;border:1px solid #00ffc644;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.feat-check-inner{width:6px;height:6px;border-radius:50%;background:#00ffc6;}
-.feat-text{font-size:9px;color:#aaa;line-height:1.4;}
-
-/* TESTIMONIALS */
-.testi-grid{display:grid;gap:10px;}
-.testi-card{background:#0d0d1a;border:1px solid #1a1a2e;border-radius:10px;padding:14px 16px;}
-.testi-text{font-size:11px;color:#aaa;line-height:1.6;margin-bottom:10px;font-style:italic;}
-.testi-author{display:flex;align-items:center;gap:8px;}
-.testi-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#00b4ff,#00ffc6);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#000;}
-.testi-name{font-size:10px;font-weight:700;color:#fff;}
-.testi-role{font-size:8px;color:#555;letter-spacing:1px;}
-
-/* CONTACT */
-.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
-.contact-item{background:#0d0d1a;border:1px solid #00b4ff22;border-radius:8px;padding:12px 14px;display:flex;align-items:center;gap:10px;}
-.contact-icon{width:30px;height:30px;border-radius:6px;background:#00b4ff18;border:1px solid #00b4ff33;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;}
-.contact-lbl{font-size:8px;color:#555;text-transform:uppercase;letter-spacing:1px;}
-.contact-val{font-size:10px;font-weight:700;color:#ccc;margin-top:2px;word-break:break-all;}
-
-/* CTA */
-.cta-section{padding:0 28px 48px;max-width:600px;margin:0 auto;}
-.cta-btn{width:100%;background:#00b4ff;border:none;border-radius:12px;padding:18px;font-family:'Orbitron',monospace;font-size:14px;font-weight:900;color:#000;letter-spacing:2px;text-transform:uppercase;cursor:pointer;display:block;text-align:center;text-decoration:none;animation:ctapulse 2s infinite;transition:transform 0.2s;}
-.cta-btn:hover{transform:scale(1.02);}
-@keyframes ctapulse{0%,100%{background:#00b4ff;box-shadow:0 0 20px #00b4ff44;}50%{background:#00d4ff;box-shadow:0 0 40px #00b4ff88;}}
-.cta-sub{text-align:center;font-size:9px;color:#444;margin-top:10px;letter-spacing:1px;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nishlab Creations | Industry-Oriented CAD & CAE Training Institute</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-bg { background: radial-gradient(ellipse at top, #1e293b 0%, #020617 50%, #000000 100%); }
+        .glass {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(14, 165, 233, 0.3);
+            border-color: rgba(14, 165, 233, 0.5);
+        }
+        .grid-pattern {
+            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .floating { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .marquee-container { overflow: hidden; white-space: nowrap; }
+        .marquee-content { display: inline-block; animation: marquee 30s linear infinite; }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .pulse-glow { animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(14, 165, 233, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(14, 165, 233, 0.6); }
+        }
+        .nav-hidden { transform: translateY(-100%); }
+        .nav-visible { transform: translateY(0); }
+        .course-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.8));
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+        .stat-number { font-variant-numeric: tabular-nums; }
+        .reveal { opacity: 0; transform: translateY(30px); }
+        .whatsapp-btn {
+            position: fixed; bottom: 30px; right: 30px; z-index: 50;
+            background: #25d366; color: white; padding: 16px; border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+        }
+        .whatsapp-btn:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6); }
+        .project-card { position: relative; overflow: hidden; }
+        .project-card::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(2, 6, 23, 0.9), transparent);
+            z-index: 1; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .project-card:hover::before { opacity: 1; }
+        .project-card .project-info {
+            position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+            transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .project-card:hover .project-info { transform: translateY(0); }
+        input:focus, textarea:focus, select:focus {
+            outline: none; border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+        }
+        /* Modal */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(2,6,23,0.85);
+            backdrop-filter: blur(8px); z-index: 100;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal-box {
+            background: #0f172a; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 1.5rem; max-width: 600px; width: 90%;
+            max-height: 85vh; overflow-y: auto;
+            transform: scale(0.95); transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-box { transform: scale(1); }
+        /* Pricing */
+        .price-badge {
+            background: linear-gradient(135deg, #0ea5e9, #818cf8);
+            padding: 2px; border-radius: 1rem;
+        }
+        .price-inner { background: #0f172a; border-radius: calc(1rem - 2px); }
+    </style>
 </head>
-<body>
+<body class="antialiased">
 
-<div class="topbar">
-  <div class="pulse-dot"></div>
-  <div class="topbar-text">⚡ Offer Ends in 1 Day — Grab the Discounted Price Before It's Gone!</div>
-  <div class="pulse-dot"></div>
-</div>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/918424099617?text=Hi%20Nishlab%20Creations!%20I'm%20interested%20in%20your%20CAD%20courses." 
+       class="whatsapp-btn" target="_blank" title="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
 
-<div class="hero">
-  <div class="grid-overlay"></div>
-  <div class="brand-row">
-    <div class="logo"><img src="data:image/jpeg;base64,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" alt="NISHLAB CREATIONS"/></div>
-    <div class="brand-info">
-      <div class="name">NISHLAB CREATIONS</div>
-      <div class="sub">Engineering &amp; Design Training</div>
+    <!-- Course Detail Modal -->
+    <div id="courseModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-box p-8">
+            <div class="flex items-center justify-between mb-6">
+                <h3 id="modalTitle" class="font-display text-2xl font-bold text-white"></h3>
+                <button onclick="document.getElementById('courseModal').classList.remove('active')" 
+                        class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/20 transition-all">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div id="modalContent"></div>
+        </div>
     </div>
-  </div>
-  <div class="badge-row">
-    <span class="badge">🔥 1 Day Left</span>
-    <span class="badge">Limited Seats</span>
-    <span class="badge cyan">Online</span>
-    <span class="badge cyan">Recordings Included</span>
-  </div>
-  <div class="hero-headline">Land Your <span class="accent">Dream</span><br>Job in <span class="days">40 Days</span></div>
-  <div class="hero-sub">Industry-ready CAD, Simulation &amp; Design skills — job-focused, flexible, and surprisingly affordable</div>
 
-  <div class="countdown-wrap">
-    <div class="countdown-label"><div class="fire"></div>Special Offer Expires In</div>
-    <div class="countdown-grid">
-      <div class="cd-box"><span class="cd-num" id="cd-d">01</span><span class="cd-lbl">Days</span></div>
-      <div class="cd-box hours"><span class="cd-num" id="cd-h">00</span><span class="cd-lbl">Hours</span></div>
-      <div class="cd-box mins"><span class="cd-num" id="cd-m">00</span><span class="cd-lbl">Mins</span></div>
-      <div class="cd-box secs"><span class="cd-num" id="cd-s">00</span><span class="cd-lbl">Secs</span></div>
-    </div>
-  </div>
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 nav-hidden">
+        <div class="glass border-b border-white/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16 lg:h-20">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-lg flex items-center justify-center">
+                            <i data-lucide="box" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span class="font-display font-bold text-xl tracking-tight text-white">Nishlab<span class="text-sky-400">Creations</span></span>
+                    </div>
+                    <div class="hidden md:flex items-center gap-8">
+                        <a href="#home" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Home</a>
+                        <a href="#about" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">About</a>
+                        <a href="#courses" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Courses</a>
+                        <a href="#projects" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Projects</a>
+                        <a href="#testimonials" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Reviews</a>
+                        <a href="#contact" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Contact</a>
+                    </div>
+                    <a href="#enroll" class="hidden md:inline-flex items-center gap-2 px-6 py-2.5 bg-sky-500 hover:bg-sky-400 text-white text-sm font-semibold rounded-full transition-all hover:shadow-lg hover:shadow-sky-500/25">
+                        Enroll Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-300 hover:text-white">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden glass border-b border-white/5">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg">Home</a>
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg">About</a>
+                <a href="#courses" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg">Courses</a>
+                <a href="#projects" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg">Projects</a>
+                <a href="#testimonials" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg">Reviews</a>
+                <a href="#enroll" class="block px-3 py-2 text-base font-medium text-sky-400 hover:text-sky-300">Enroll Now</a>
+            </div>
+        </div>
+    </nav>
 
-  <div class="offer-strip">
-    <div>
-      <div style="display:flex;align-items:baseline;gap:8px;">
-        <span class="price-old">Rs.9,000</span>
-        <span class="price-new">Rs.7,080</span>
-      </div>
-      <div class="price-gst">Incl. 18% GST &nbsp;|&nbsp; Rs.6,000 base fee</div>
-    </div>
-    <div class="per-day-tag">Just Rs.177/day</div>
-  </div>
-</div>
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center hero-bg overflow-hidden">
+        <div class="absolute inset-0 grid-pattern opacity-50"></div>
+        <div class="absolute top-20 left-10 w-72 h-72 bg-sky-500/10 rounded-full blur-3xl floating"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl floating" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-3xl"></div>
 
-<!-- MODULES -->
-<div class="section">
-  <div class="sec-title">What You Will Learn</div>
-  <div class="modules-grid">
-    <div class="mod-card c1"><div class="mod-name">AutoCAD</div><div class="mod-desc">2D drafting &amp; engineering drawings</div></div>
-    <div class="mod-card c2"><div class="mod-name">SolidWorks</div><div class="mod-desc">3D modeling &amp; assemblies</div></div>
-    <div class="mod-card c3"><div class="mod-name">ANSYS</div><div class="mod-desc">FEA simulation &amp; analysis</div></div>
-    <div class="mod-card c4"><div class="mod-name">Excel + VBA</div><div class="mod-desc">Macros &amp; automation</div></div>
-    <div class="mod-card c5"><div class="mod-name">KeyShot</div><div class="mod-desc">Photorealistic rendering</div></div>
-    <div class="mod-card c6"><div class="mod-name">Portfolio</div><div class="mod-desc">Resume + career prep</div></div>
-  </div>
-</div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 reveal">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-glow"></span>
+                <span class="text-sm font-medium text-slate-300">New Batch Starting Soon</span>
+            </div>
+            <h1 class="font-display text-5xl sm:text-6xl lg:text-8xl font-bold tracking-tight mb-6 reveal">
+                <span class="block text-white">Learn. Create.</span>
+                <span class="block gradient-text mt-2">Get Hired.</span>
+            </h1>
+            <p class="mt-6 text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed reveal">
+                Industry-Oriented <span class="text-sky-400 font-semibold">CAD & CAE</span> Training Institute.
+                Master AutoCAD, SolidWorks, CATIA, ANSYS, Python & VBA Automation with real industrial projects.
+            </p>
+            <div class="mt-8 flex flex-wrap justify-center gap-3 reveal">
+                <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium text-slate-300">AutoCAD</span>
+                <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium text-slate-300">SolidWorks</span>
+                <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium text-slate-300">CATIA</span>
+                <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium text-slate-300">ANSYS</span>
+                <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium text-slate-300">Python</span>
+                <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium text-slate-300">VBA</span>
+            </div>
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 reveal">
+                <a href="#enroll" class="group px-8 py-4 bg-sky-500 hover:bg-sky-400 text-white font-bold rounded-full transition-all hover:shadow-xl hover:shadow-sky-500/25 flex items-center gap-2">
+                    Enroll Now <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#courses" class="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold rounded-full transition-all flex items-center gap-2">
+                    Explore Courses <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </a>
+            </div>
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto reveal">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-white stat-number" data-target="500">0</div>
+                    <div class="text-sm text-slate-400 mt-1">Students Trained</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-white stat-number" data-target="98">0</div>
+                    <div class="text-sm text-slate-400 mt-1">% Placement Rate</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-white stat-number" data-target="50">0</div>
+                    <div class="text-sm text-slate-400 mt-1">Industrial Projects</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-white stat-number" data-target="6">0</div>
+                    <div class="text-sm text-slate-400 mt-1">Years Experience</div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="w-6 h-6 text-slate-500"></i>
+        </div>
+    </section>
 
-<!-- COMPARE -->
-<div class="section">
-  <div class="sec-title">Why Not Spend ₹70,000 Elsewhere?</div>
-  <div style="background:#0d0d1a;border:1px solid #1a1a2e;border-radius:10px;overflow:hidden;">
-    <table class="compare-table">
-      <thead>
-        <tr>
-          <th>Feature</th>
-          <th>Other Institutes</th>
-          <th>NISHLAB</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Course Fee</td><td>₹40,000–₹70,000</td><td>₹7,080</td></tr>
-        <tr><td>Duration</td><td>6–12 months</td><td>40 days</td></tr>
-        <tr><td>Batch Flexibility</td><td>Fixed slots only</td><td>4 slots/day</td></tr>
-        <tr><td>Session Recordings</td><td>Paid extra</td><td>Included ✓</td></tr>
-        <tr class="highlight-row"><td>Resume + Portfolio</td><td>Not included</td><td>Included ✓</td></tr>
-        <tr><td>Interview Prep</td><td>Not included</td><td>Included ✓</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-sm font-medium mb-6">
+                        <i data-lucide="target" class="w-4 h-4"></i> Our Mission
+                    </div>
+                    <h2 class="font-display text-4xl lg:text-5xl font-bold text-white mb-6">
+                        Making Every Engineer <span class="gradient-text">Industry-Ready</span>
+                    </h2>
+                    <p class="text-lg text-slate-400 leading-relaxed mb-8">
+                        We bridge the gap between academic knowledge and industry requirements through practical design training,
+                        real industrial projects, automation tools, and comprehensive placement guidance.
+                    </p>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/5">
+                            <div class="w-10 h-10 rounded-lg bg-sky-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="briefcase" class="w-5 h-5 text-sky-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Industrial Projects</h4><p class="text-sm text-slate-400 mt-1">Real-world CAD/CAE projects</p></div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/5">
+                            <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="bot" class="w-5 h-5 text-purple-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Design Automation</h4><p class="text-sm text-slate-400 mt-1">VBA, Python & AI tools</p></div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/5">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="folder-check" class="w-5 h-5 text-emerald-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Portfolio Building</h4><p class="text-sm text-slate-400 mt-1">Professional project showcase</p></div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/5">
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="user-check" class="w-5 h-5 text-amber-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Interview Prep</h4><p class="text-sm text-slate-400 mt-1">Mock & technical rounds</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative reveal">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-2xl opacity-20 blur-2xl"></div>
+                    <div class="relative glass rounded-2xl p-8 border border-white/10">
+                        <h3 class="font-display text-2xl font-bold text-white mb-6">Why Choose Us?</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-sky-500/20 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i></div>
+                                <span class="text-slate-300">100% Practical Training Approach</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-sky-500/20 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i></div>
+                                <span class="text-slate-300">Live CAD Models & Simulations</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-sky-500/20 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i></div>
+                                <span class="text-slate-300">AI Integration for Engineers</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-sky-500/20 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i></div>
+                                <span class="text-slate-300">Resume & LinkedIn Optimization</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-sky-500/20 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i></div>
+                                <span class="text-slate-300">Affordable Fees with EMI Options</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-sky-500/20 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i></div>
+                                <span class="text-slate-300">Lifetime Recording Access</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- BATCHES -->
-<div class="section">
-  <div class="sec-title">Pick Your Batch Slot</div>
-  <div class="batch-grid">
-    <div class="batch-item"><div class="batch-dot"></div><div><div class="batch-lbl">Morning</div><div class="batch-time">6:00–8:00 AM</div></div></div>
-    <div class="batch-item"><div class="batch-dot"></div><div><div class="batch-lbl">Afternoon</div><div class="batch-time">12:00–2:00 PM</div></div></div>
-    <div class="batch-item"><div class="batch-dot"></div><div><div class="batch-lbl">Evening</div><div class="batch-time">4:00–6:00 PM</div></div></div>
-    <div class="batch-item"><div class="batch-dot"></div><div><div class="batch-lbl">Night</div><div class="batch-time">7:00–9:00 PM</div></div></div>
-  </div>
-</div>
+    <!-- Tech Stack Marquee -->
+    <section class="py-12 border-y border-white/5 bg-white/5">
+        <div class="marquee-container">
+            <div class="marquee-content flex items-center gap-16 px-8">
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-sky-400 transition-colors cursor-default">AutoCAD</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-red-400 transition-colors cursor-default">SolidWorks</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-blue-400 transition-colors cursor-default">CATIA V5</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-yellow-400 transition-colors cursor-default">ANSYS</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-green-400 transition-colors cursor-default">Python</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-emerald-400 transition-colors cursor-default">Excel VBA</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-purple-400 transition-colors cursor-default">KeyShot</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-pink-400 transition-colors cursor-default">AI Tools</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-sky-400 transition-colors cursor-default">AutoCAD</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-red-400 transition-colors cursor-default">SolidWorks</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-blue-400 transition-colors cursor-default">CATIA V5</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-yellow-400 transition-colors cursor-default">ANSYS</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-green-400 transition-colors cursor-default">Python</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-emerald-400 transition-colors cursor-default">Excel VBA</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-purple-400 transition-colors cursor-default">KeyShot</span>
+                <span class="text-slate-700">•</span>
+                <span class="text-2xl font-display font-bold text-slate-600 hover:text-pink-400 transition-colors cursor-default">AI Tools</span>
+            </div>
+        </div>
+    </section>
 
-<!-- FEATURES -->
-<div class="section">
-  <div class="sec-title">Why NISHLAB</div>
-  <div class="features-grid">
-    <div class="feat-item"><div class="feat-check"><div class="feat-check-inner"></div></div><div class="feat-text">Live online + recorded sessions</div></div>
-    <div class="feat-item"><div class="feat-check"><div class="feat-check-inner"></div></div><div class="feat-text">Industry-standard software</div></div>
-    <div class="feat-item"><div class="feat-check"><div class="feat-check-inner"></div></div><div class="feat-text">Resume &amp; LinkedIn building</div></div>
-    <div class="feat-item"><div class="feat-check"><div class="feat-check-inner"></div></div><div class="feat-text">Job-ready portfolio</div></div>
-    <div class="feat-item"><div class="feat-check"><div class="feat-check-inner"></div></div><div class="feat-text">Completion certificate</div></div>
-    <div class="feat-item"><div class="feat-check"><div class="feat-check-inner"></div></div><div class="feat-text">Interview preparation</div></div>
-    <div class="feat-item"><div class="feat-check"><div class="feat-check-inner"></div></div><div class="feat-text">Flexible batch choice</div></div>
-    <div class="feat-item"><div class="feat-check"><div class="feat-check-inner"></div></div><div class="feat-text">Expert faculty guidance</div></div>
-  </div>
-</div>
+    <!-- Courses Section -->
+    <section id="courses" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-sm font-medium mb-6">
+                    <i data-lucide="graduation-cap" class="w-4 h-4"></i> Our Courses
+                </div>
+                <h2 class="font-display text-4xl lg:text-5xl font-bold text-white mb-4">Master <span class="gradient-text">Industry Tools</span></h2>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto">Comprehensive training programs designed by industry experts to make you job-ready from day one.</p>
+            </div>
 
-<!-- TESTIMONIALS -->
-<div class="section">
-  <div class="sec-title">What Students Say</div>
-  <div class="testi-grid">
-    <div class="testi-card">
-      <div class="testi-text">"I got placed within 3 weeks of completing the course. The portfolio work really made the difference in interviews. Totally worth every rupee!"</div>
-      <div class="testi-author">
-        <div class="testi-avatar">RK</div>
-        <div><div class="testi-name">Rohit Kulkarni</div><div class="testi-role">Mechanical Engineer, Pune</div></div>
-      </div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-text">"The 40-day structure kept me super focused. SolidWorks + ANSYS together in one course — I couldn't find this anywhere else at this price."</div>
-      <div class="testi-author">
-        <div class="testi-avatar">PS</div>
-        <div><div class="testi-name">Priya Sawant</div><div class="testi-role">Design Trainee, Mumbai</div></div>
-      </div>
-    </div>
-  </div>
-</div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- AutoCAD -->
+                <div class="course-card rounded-2xl p-6 card-hover reveal group cursor-pointer" onclick="showCourseDetail('autocad')">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-red-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="pen-tool" class="w-7 h-7 text-red-400"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-slate-400 text-xs font-medium border border-white/10">45 Days</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-2">AutoCAD Professional</h3>
+                    <p class="text-slate-400 text-sm mb-4">Master 2D drafting, 3D modeling, dynamic blocks, and sheet sets for professional engineering documentation.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>2D Drafting & 3D Modeling</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Dynamic Blocks & Attributes</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Sheet Sets & Plotting</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-white/5 hover:bg-red-500/20 border border-white/10 hover:border-red-500/50 text-white font-medium transition-all flex items-center justify-center gap-2 group-hover:text-red-400">
+                        View Syllabus <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </button>
+                </div>
 
-<!-- CONTACT -->
-<div class="section">
-  <div class="sec-title">Get In Touch</div>
-  <div class="contact-grid">
-    <div class="contact-item">
-      <div class="contact-icon">📧</div>
-      <div>
-        <div class="contact-lbl">Email</div>
-        <div class="contact-val">nishad@nishlabcreations.com</div>
-      </div>
-    </div>
-    <div class="contact-item">
-      <div class="contact-icon">📱</div>
-      <div>
-        <div class="contact-lbl">WhatsApp / Call</div>
-        <div class="contact-val">+91 84240 99617</div>
-      </div>
-    </div>
-  </div>
-</div>
+                <!-- SolidWorks -->
+                <div class="course-card rounded-2xl p-6 card-hover reveal group cursor-pointer" style="transition-delay: 100ms;" onclick="showCourseDetail('solidworks')">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-amber-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="box" class="w-7 h-7 text-amber-400"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-slate-400 text-xs font-medium border border-white/10">60 Days</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-2">SolidWorks Professional</h3>
+                    <p class="text-slate-400 text-sm mb-4">Complete part modeling, assemblies, sheet metal, surfacing, and macro automation training.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Part & Assembly Design</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Sheet Metal & Weldments</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Macros & Design Tables</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-white/5 hover:bg-amber-500/20 border border-white/10 hover:border-amber-500/50 text-white font-medium transition-all flex items-center justify-center gap-2 group-hover:text-amber-400">
+                        View Syllabus <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </button>
+                </div>
 
-<!-- CTA -->
-<div class="cta-section">
-  <a class="cta-btn" href="enroll.html">🚀 Enroll Now — Offer Ends Soon</a>
-  <div class="cta-sub">Click to fill your enrollment form • Takes only 2 minutes</div>
-</div>
+                <!-- CATIA -->
+                <div class="course-card rounded-2xl p-6 card-hover reveal group cursor-pointer" style="transition-delay: 200ms;" onclick="showCourseDetail('catia')">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-blue-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="layers" class="w-7 h-7 text-blue-400"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-slate-400 text-xs font-medium border border-white/10">60 Days</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-2">CATIA V5</h3>
+                    <p class="text-slate-400 text-sm mb-4">Industry-standard aerospace and automotive design tool covering sketcher, part design, and surface modeling.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Sketcher & Part Design</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Assembly & Drafting</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Surface Design (GSD)</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-white/5 hover:bg-blue-500/20 border border-white/10 hover:border-blue-500/50 text-white font-medium transition-all flex items-center justify-center gap-2 group-hover:text-blue-400">
+                        View Syllabus <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </button>
+                </div>
 
-<script>
-(function(){
-  var deadline = new Date();
-  deadline.setDate(deadline.getDate() + 1);
-  deadline.setHours(23,59,59,0);
-  function pad(n){return n<10?'0'+n:''+n;}
-  function tick(){
-    var now = new Date();
-    var diff = Math.max(0, deadline - now);
-    var d = Math.floor(diff/86400000);
-    var h = Math.floor((diff%86400000)/3600000);
-    var m = Math.floor((diff%3600000)/60000);
-    var s = Math.floor((diff%60000)/1000);
-    document.getElementById('cd-d').textContent = pad(d);
-    document.getElementById('cd-h').textContent = pad(h);
-    document.getElementById('cd-m').textContent = pad(m);
-    document.getElementById('cd-s').textContent = pad(s);
-  }
-  tick(); setInterval(tick, 1000);
-})();
-</script>
+                <!-- ANSYS -->
+                <div class="course-card rounded-2xl p-6 card-hover reveal group cursor-pointer" onclick="showCourseDetail('ansys')">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-yellow-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="activity" class="w-7 h-7 text-yellow-400"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-slate-400 text-xs font-medium border border-white/10">45 Days</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-2">ANSYS Workbench</h3>
+                    <p class="text-slate-400 text-sm mb-4">Structural, thermal, modal, and CFD analysis using industry-leading simulation software.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Static Structural Analysis</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Modal & Thermal Analysis</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>CFD Basics & Fatigue</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-white/5 hover:bg-yellow-500/20 border border-white/10 hover:border-yellow-500/50 text-white font-medium transition-all flex items-center justify-center gap-2 group-hover:text-yellow-400">
+                        View Syllabus <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Python -->
+                <div class="course-card rounded-2xl p-6 card-hover reveal group cursor-pointer" style="transition-delay: 100ms;" onclick="showCourseDetail('python')">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-emerald-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="code-2" class="w-7 h-7 text-emerald-400"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-slate-400 text-xs font-medium border border-white/10">60 Days</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-2">Python for Engineers</h3>
+                    <p class="text-slate-400 text-sm mb-4">Automate CAD workflows, generate reports, and integrate AI tools with Python programming.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Excel & AutoCAD Automation</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>SolidWorks API Integration</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>AI & Report Generation</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-white/5 hover:bg-emerald-500/20 border border-white/10 hover:border-emerald-500/50 text-white font-medium transition-all flex items-center justify-center gap-2 group-hover:text-emerald-400">
+                        View Syllabus <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Excel VBA -->
+                <div class="course-card rounded-2xl p-6 card-hover reveal group cursor-pointer" style="transition-delay: 200ms;" onclick="showCourseDetail('excel')">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-green-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="table" class="w-7 h-7 text-green-400"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-slate-400 text-xs font-medium border border-white/10">30 Days</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-2">Excel for Engineers</h3>
+                    <p class="text-slate-400 text-sm mb-4">Advanced functions, dashboards, VBA automation, and UserForms for engineering calculations.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Advanced Functions & Dashboards</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>VBA Macros & UserForms</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>Engineering Automation</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-white/5 hover:bg-green-500/20 border border-white/10 hover:border-green-500/50 text-white font-medium transition-all flex items-center justify-center gap-2 group-hover:text-green-400">
+                        View Syllabus <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Master Program CTA -->
+            <div class="mt-12 reveal">
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 p-8 lg:p-12">
+                    <div class="absolute inset-0 opacity-20" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRoLTJ2LTRoMnY0em0wLTZ2LTRoLTJ2NGgyem0tNiA2aC00djJoNHYtMnptMC02di00aC00djRoNHptLTYgNmgtNHYyaDR2LTJ6bTAtNnYtNGgtNHY0aDR6Ii8+PC9nPjwvZz48L3N2Zz4=')"></div>
+                    <div class="relative flex flex-col lg:flex-row items-center justify-between gap-8">
+                        <div class="text-center lg:text-left">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-sm font-medium mb-4">
+                                <i data-lucide="sparkles" class="w-4 h-4"></i> Master Program
+                            </div>
+                            <h3 class="font-display text-3xl lg:text-4xl font-bold text-white mb-2">Design Automation Master Program</h3>
+                            <p class="text-indigo-100 text-lg">AutoCAD + SolidWorks + ANSYS + Python + Excel VBA + KeyShot + AI Tools</p>
+                            <p class="text-white/80 mt-2 text-sm">60 Days • Live Sessions • Certificate • Placement Support</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="mb-3">
+                                <span class="text-white/60 line-through text-lg">₹15,000</span>
+                                <span class="text-white font-bold text-4xl ml-2">₹12,000</span>
+                                <span class="text-white/70 text-sm ml-1">+ GST</span>
+                            </div>
+                            <a href="#enroll" class="inline-flex px-8 py-4 bg-white text-indigo-600 font-bold rounded-full hover:bg-indigo-50 transition-all hover:shadow-xl items-center gap-2 whitespace-nowrap">
+                                Join Master Program <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </a>
+                            <p class="text-white/60 text-xs mt-2">EMI available • ₹4,000 seat lock</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 relative bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-sm font-medium mb-6">
+                    <i data-lucide="folder" class="w-4 h-4"></i> Industrial Projects
+                </div>
+                <h2 class="font-display text-4xl lg:text-5xl font-bold text-white mb-4">Real <span class="gradient-text">Industry Projects</span></h2>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto">Build a professional portfolio with industry-standard projects that employers actually want to see.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="project-card rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 h-64 flex items-center justify-center reveal group">
+                    <div class="text-center p-6">
+                        <i data-lucide="cog" class="w-12 h-12 text-sky-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="font-display text-lg font-bold text-white">Gearbox Design</h4>
+                        <p class="text-sm text-slate-400 mt-1">Complete 3D modeling & assembly</p>
+                    </div>
+                    <div class="project-info p-6">
+                        <h4 class="font-display text-lg font-bold text-white mb-2">Gearbox Design</h4>
+                        <p class="text-sm text-slate-300">Multi-stage gearbox with bearing selection, shaft design, and housing modeling using SolidWorks.</p>
+                    </div>
+                </div>
+                <div class="project-card rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 h-64 flex items-center justify-center reveal group" style="transition-delay: 100ms;">
+                    <div class="text-center p-6">
+                        <i data-lucide="move-horizontal" class="w-12 h-12 text-amber-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="font-display text-lg font-bold text-white">Conveyor Design</h4>
+                        <p class="text-sm text-slate-400 mt-1">Material handling system</p>
+                    </div>
+                    <div class="project-info p-6">
+                        <h4 class="font-display text-lg font-bold text-white mb-2">Conveyor Design</h4>
+                        <p class="text-sm text-slate-300">Industrial belt conveyor with motor selection, frame design, and assembly using AutoCAD & SolidWorks.</p>
+                    </div>
+                </div>
+                <div class="project-card rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 h-64 flex items-center justify-center reveal group" style="transition-delay: 200ms;">
+                    <div class="text-center p-6">
+                        <i data-lucide="box-select" class="w-12 h-12 text-purple-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="font-display text-lg font-bold text-white">Sheet Metal Enclosure</h4>
+                        <p class="text-sm text-slate-400 mt-1">Precision fabrication design</p>
+                    </div>
+                    <div class="project-info p-6">
+                        <h4 class="font-display text-lg font-bold text-white mb-2">Sheet Metal Enclosure</h4>
+                        <p class="text-sm text-slate-300">Electronic enclosure with bends, punches, and flat pattern development using SolidWorks Sheet Metal.</p>
+                    </div>
+                </div>
+                <div class="project-card rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 h-64 flex items-center justify-center reveal group">
+                    <div class="text-center p-6">
+                        <i data-lucide="cylinder" class="w-12 h-12 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="font-display text-lg font-bold text-white">Pressure Vessel</h4>
+                        <p class="text-sm text-slate-400 mt-1">ASME standard design</p>
+                    </div>
+                    <div class="project-info p-6">
+                        <h4 class="font-display text-lg font-bold text-white mb-2">Pressure Vessel</h4>
+                        <p class="text-sm text-slate-300">Design and FEA validation with nozzle, saddle support using ANSYS Workbench.</p>
+                    </div>
+                </div>
+                <div class="project-card rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 h-64 flex items-center justify-center reveal group" style="transition-delay: 100ms;">
+                    <div class="text-center p-6">
+                        <i data-lucide="layout-template" class="w-12 h-12 text-emerald-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="font-display text-lg font-bold text-white">Machine Frames</h4>
+                        <p class="text-sm text-slate-400 mt-1">Structural weldment design</p>
+                    </div>
+                    <div class="project-info p-6">
+                        <h4 class="font-display text-lg font-bold text-white mb-2">Machine Frames</h4>
+                        <p class="text-sm text-slate-300">Industrial machine base frame with weldment profiles, structural analysis, and GD&T documentation.</p>
+                    </div>
+                </div>
+                <div class="project-card rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 h-64 flex items-center justify-center reveal group" style="transition-delay: 200ms;">
+                    <div class="text-center p-6">
+                        <i data-lucide="file-spreadsheet" class="w-12 h-12 text-green-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="font-display text-lg font-bold text-white">BOM Generator</h4>
+                        <p class="text-sm text-slate-400 mt-1">Excel VBA automation</p>
+                    </div>
+                    <div class="project-info p-6">
+                        <h4 class="font-display text-lg font-bold text-white mb-2">BOM Generator</h4>
+                        <p class="text-sm text-slate-300">Automated Bill of Materials extraction from CAD models using Excel VBA and Python scripting.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center reveal">
+                <p class="text-slate-400">And many more: Mold Plates, Fixture & Jig Design, Drawing Automation, GD&T Projects, Automation Dashboards</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio & Placement -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="reveal">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-6">
+                        <i data-lucide="briefcase" class="w-4 h-4"></i> Student Portfolio
+                    </div>
+                    <h2 class="font-display text-4xl font-bold text-white mb-6">Everything You Need to <span class="gradient-text">Get Hired</span></h2>
+                    <p class="text-slate-400 mb-8">Every student receives a complete professional package to stand out in job applications.</p>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-500/30 transition-colors">
+                            <i data-lucide="file-text" class="w-5 h-5 text-emerald-400"></i><span class="text-slate-300 text-sm font-medium">Professional Resume</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-500/30 transition-colors">
+                            <i data-lucide="linkedin" class="w-5 h-5 text-emerald-400"></i><span class="text-slate-300 text-sm font-medium">LinkedIn Optimization</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-500/30 transition-colors">
+                            <i data-lucide="globe" class="w-5 h-5 text-emerald-400"></i><span class="text-slate-300 text-sm font-medium">Portfolio Website</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-500/30 transition-colors">
+                            <i data-lucide="folder-open" class="w-5 h-5 text-emerald-400"></i><span class="text-slate-300 text-sm font-medium">CAD Project Files</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-500/30 transition-colors">
+                            <i data-lucide="file-image" class="w-5 h-5 text-emerald-400"></i><span class="text-slate-300 text-sm font-medium">Render Images</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-500/30 transition-colors">
+                            <i data-lucide="drafting-compass" class="w-5 h-5 text-emerald-400"></i><span class="text-slate-300 text-sm font-medium">Engineering Drawings</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium mb-6">
+                        <i data-lucide="users" class="w-4 h-4"></i> Placement Support
+                    </div>
+                    <h2 class="font-display text-4xl font-bold text-white mb-6">Complete <span class="gradient-text">Placement Assistance</span></h2>
+                    <p class="text-slate-400 mb-8">We don't just teach — we ensure you land your dream job with comprehensive support.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="message-square" class="w-5 h-5 text-amber-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Mock Interviews</h4><p class="text-sm text-slate-400 mt-1">HR and technical mock sessions with industry experts</p></div>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="search" class="w-5 h-5 text-amber-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Job Portal Support</h4><p class="text-sm text-slate-400 mt-1">Profile creation on Naukri, LinkedIn, and Indeed</p></div>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="eye" class="w-5 h-5 text-amber-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Portfolio Review</h4><p class="text-sm text-slate-400 mt-1">Detailed feedback on projects and presentations</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-24 relative bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-sm font-medium mb-6">
+                    <i data-lucide="star" class="w-4 h-4"></i> Student Reviews
+                </div>
+                <h2 class="font-display text-4xl lg:text-5xl font-bold text-white mb-4">What Our <span class="gradient-text">Students Say</span></h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass rounded-2xl p-6 card-hover reveal">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm mb-4">"Practical teaching approach with real industrial projects. The SolidWorks training helped me secure a design engineer position."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-sky-400 to-indigo-500 flex items-center justify-center text-white font-bold text-sm">RK</div>
+                        <div><div class="text-white font-medium text-sm">Rahul K.</div><div class="text-slate-500 text-xs">Design Engineer</div></div>
+                    </div>
+                </div>
+                <div class="glass rounded-2xl p-6 card-hover reveal" style="transition-delay: 100ms;">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm mb-4">"Excellent industrial knowledge shared during ANSYS training. The FEA concepts were explained with actual case studies."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-bold text-sm">AP</div>
+                        <div><div class="text-white font-medium text-sm">Ankit P.</div><div class="text-slate-500 text-xs">CAE Engineer</div></div>
+                    </div>
+                </div>
+                <div class="glass rounded-2xl p-6 card-hover reveal" style="transition-delay: 200ms;">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm mb-4">"The Python automation course transformed my workflow. I now automate CAD tasks that used to take hours into minutes."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center text-white font-bold text-sm">SM</div>
+                        <div><div class="text-white font-medium text-sm">Sneha M.</div><div class="text-slate-500 text-xs">Automation Engineer</div></div>
+                    </div>
+                </div>
+                <div class="glass rounded-2xl p-6 card-hover reveal" style="transition-delay: 300ms;">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm mb-4">"Job-ready training with amazing support. Portfolio building and interview prep were game changers for my career."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold text-sm">VJ</div>
+                        <div><div class="text-white font-medium text-sm">Vikas J.</div><div class="text-slate-500 text-xs">Product Designer</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Resources -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-6">
+                    <i data-lucide="download" class="w-4 h-4"></i> Free Resources
+                </div>
+                <h2 class="font-display text-4xl lg:text-5xl font-bold text-white mb-4">Download <span class="gradient-text">Learning Materials</span></h2>
+                <p class="text-lg text-slate-400">Free resources to kickstart your engineering journey</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <a href="#" class="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-sky-500/50 hover:bg-sky-500/5 transition-all reveal">
+                    <i data-lucide="file-question" class="w-8 h-8 text-sky-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-semibold text-white mb-1">CAD Interview Questions</h4>
+                    <p class="text-sm text-slate-400">200+ questions with answers</p>
+                </a>
+                <a href="#" class="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-500/50 hover:bg-amber-500/5 transition-all reveal" style="transition-delay: 100ms;">
+                    <i data-lucide="pencil-ruler" class="w-8 h-8 text-amber-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-semibold text-white mb-1">SolidWorks Drawings</h4>
+                    <p class="text-sm text-slate-400">Practice exercises & parts</p>
+                </a>
+                <a href="#" class="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all reveal" style="transition-delay: 200ms;">
+                    <i data-lucide="file-spreadsheet" class="w-8 h-8 text-emerald-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-semibold text-white mb-1">Excel Templates</h4>
+                    <p class="text-sm text-slate-400">Engineering calculators</p>
+                </a>
+                <a href="#" class="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/50 hover:bg-purple-500/5 transition-all reveal" style="transition-delay: 300ms;">
+                    <i data-lucide="code" class="w-8 h-8 text-purple-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-semibold text-white mb-1">Python Scripts</h4>
+                    <p class="text-sm text-slate-400">CAD automation scripts</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Enroll Section -->
+    <section id="contact" class="py-24 relative bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="reveal">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-sm font-medium mb-6">
+                        <i data-lucide="mail" class="w-4 h-4"></i> Get In Touch
+                    </div>
+                    <h2 class="font-display text-4xl font-bold text-white mb-6">Start Your <span class="gradient-text">Journey Today</span></h2>
+                    <p class="text-slate-400 mb-8">Ready to become an industry-ready engineer? Contact us for course details, fee structure, and batch schedules.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-sky-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-sky-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Location</h4><p class="text-slate-400">Mumbai / Online, Maharashtra, India</p></div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="phone" class="w-6 h-6 text-emerald-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Phone / WhatsApp</h4><p class="text-slate-400">+91 84240 99617</p></div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="mail" class="w-6 h-6 text-purple-400"></i>
+                            </div>
+                            <div><h4 class="font-semibold text-white">Email</h4><p class="text-slate-400">nishad@nishlabcreations.com</p></div>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex gap-4">
+                        <a href="#" class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-red-500 hover:border-red-500/30 transition-all">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-blue-500 hover:border-blue-500/30 transition-all">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-pink-500 hover:border-pink-500/30 transition-all">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://wa.me/918424099617" class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-green-500 hover:border-green-500/30 transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Enroll Form -->
+                <div id="enroll" class="reveal">
+                    <div class="glass rounded-2xl p-8 border border-white/10">
+                        <h3 class="font-display text-2xl font-bold text-white mb-2">Enroll Now</h3>
+                        <p class="text-slate-400 text-sm mb-6">Fill in your details and we'll contact you within 24 hours.</p>
+                        
+                        <div id="enrollSuccess" class="hidden text-center py-8">
+                            <div class="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
+                                <i data-lucide="check-circle" class="w-8 h-8 text-emerald-400"></i>
+                            </div>
+                            <h4 class="font-display text-xl font-bold text-white mb-2">Application Received!</h4>
+                            <p class="text-slate-400">We'll reach out to you on WhatsApp within 24 hours.</p>
+                            <a href="https://wa.me/918424099617?text=Hi%20I%20just%20enrolled%20on%20your%20website!%20Please%20share%20batch%20details." 
+                               class="inline-flex items-center gap-2 mt-4 px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-white font-semibold rounded-full transition-all">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                Chat on WhatsApp
+                            </a>
+                        </div>
+
+                        <form id="enrollForm" class="space-y-4" onsubmit="handleEnroll(event)">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-300 mb-2">Full Name *</label>
+                                    <input type="text" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:border-sky-500 transition-colors" placeholder="Your Name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-300 mb-2">Phone / WhatsApp *</label>
+                                    <input type="tel" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:border-sky-500 transition-colors" placeholder="+91 98765 43210">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Email Address *</label>
+                                <input type="email" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:border-sky-500 transition-colors" placeholder="you@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Course Interested In *</label>
+                                <select required class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-white/10 text-white focus:border-sky-500 transition-colors appearance-none cursor-pointer">
+                                    <option value="" disabled selected>Select a course</option>
+                                    <option value="master">Design Automation Master Program (₹12,000)</option>
+                                    <option value="solidworks">SolidWorks Professional (60 Days)</option>
+                                    <option value="autocad">AutoCAD Professional (45 Days)</option>
+                                    <option value="ansys">ANSYS Workbench (45 Days)</option>
+                                    <option value="catia">CATIA V5 (60 Days)</option>
+                                    <option value="python">Python for Engineers (60 Days)</option>
+                                    <option value="excel">Excel for Engineers (30 Days)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Education / Background</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:border-sky-500 transition-colors" placeholder="e.g. B.E. Mechanical, Working Professional">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Message (Optional)</label>
+                                <textarea rows="3" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:border-sky-500 transition-colors resize-none" placeholder="Any specific questions or goals?"></textarea>
+                            </div>
+
+                            <!-- Pricing Info -->
+                            <div class="p-4 rounded-xl bg-sky-500/10 border border-sky-500/20">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-slate-300 text-sm font-medium">Master Program Fee</span>
+                                    <div>
+                                        <span class="text-slate-500 line-through text-sm">₹15,000</span>
+                                        <span class="text-sky-400 font-bold text-lg ml-2">₹12,000</span>
+                                        <span class="text-slate-400 text-xs">+ GST</span>
+                                    </div>
+                                </div>
+                                <p class="text-slate-400 text-xs">💳 EMI: ₹4,000 seat lock → ₹4,000 at Day 20 → ₹4,000 at Day 40</p>
+                            </div>
+
+                            <div id="formError" class="hidden text-red-400 text-sm p-3 rounded-xl bg-red-500/10 border border-red-500/20"></div>
+                            <button type="submit" class="w-full py-4 bg-sky-500 hover:bg-sky-400 text-white font-bold rounded-xl transition-all hover:shadow-lg hover:shadow-sky-500/25 flex items-center justify-center gap-2">
+                                Submit Enrollment Request
+                                <i data-lucide="send" class="w-5 h-5"></i>
+                            </button>
+                            <p class="text-center text-slate-500 text-xs">Or WhatsApp directly: <a href="https://wa.me/918424099617" class="text-sky-400 hover:underline">+91 84240 99617</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-lg flex items-center justify-center">
+                            <i data-lucide="box" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span class="font-display font-bold text-xl text-white">Nishlab<span class="text-sky-400">Creations</span></span>
+                    </div>
+                    <p class="text-slate-400 text-sm max-w-xs">Industry-oriented CAD & CAE training institute making every engineer job-ready through practical, project-based learning.</p>
+                    <p class="text-slate-500 text-xs mt-4">MSME Registered • Udyam Certified</p>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-white mb-4">Courses</h5>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">AutoCAD Professional</a></li>
+                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">SolidWorks Professional</a></li>
+                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">CATIA V5</a></li>
+                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">ANSYS Workbench</a></li>
+                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">Python for Engineers</a></li>
+                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">Excel for Engineers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-white mb-4">Quick Links</h5>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#about" class="hover:text-sky-400 transition-colors">About Us</a></li>
+                        <li><a href="#projects" class="hover:text-sky-400 transition-colors">Projects</a></li>
+                        <li><a href="#testimonials" class="hover:text-sky-400 transition-colors">Reviews</a></li>
+                        <li><a href="#enroll" class="hover:text-sky-400 transition-colors">Enroll Now</a></li>
+                        <li><a href="https://wa.me/918424099617" class="hover:text-sky-400 transition-colors">WhatsApp Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-slate-500 text-sm">© 2025 Nishlab Creations. All rights reserved.</p>
+                <p class="text-slate-500 text-sm">Made with ❤️ for Engineers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons (safe check in case CDN is blocked)
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        } else {
+            console.warn('Lucide failed to load — icons will not render. Check network/ad-blocker.');
+        }
+
+        // Navbar scroll behavior
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.remove('nav-hidden');
+                navbar.classList.add('nav-visible');
+            } else {
+                navbar.classList.add('nav-hidden');
+                navbar.classList.remove('nav-visible');
+            }
+        });
+        // Show nav on load after delay
+        setTimeout(() => {
+            navbar.classList.remove('nav-hidden');
+            navbar.classList.add('nav-visible');
+        }, 500);
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Counter animation
+        function animateCounter(el, target, suffix='') {
+            let start = 0;
+            const duration = 2000;
+            const step = (timestamp) => {
+                if (!start) start = timestamp;
+                const progress = Math.min((timestamp - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.floor(eased * target) + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+                else el.textContent = target + suffix;
+            };
+            requestAnimationFrame(step);
+        }
+
+        // Scroll reveal + counter trigger
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    
+                    // Trigger counters if stat elements
+                    const stats = entry.target.querySelectorAll('.stat-number[data-target]');
+                    stats.forEach(stat => {
+                        const target = parseInt(stat.getAttribute('data-target'));
+                        const suffix = target === 98 ? '%' : target === 6 ? '+' : '+';
+                        animateCounter(stat, target, suffix);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Course syllabus data
+        const courseData = {
+            autocad: {
+                title: 'AutoCAD Professional — 45 Days',
+                color: 'red',
+                modules: [
+                    { week: 'Week 1–2', title: 'Drafting Fundamentals', topics: ['Interface, UCS, coordinate systems', '2D drawing commands: Line, Circle, Arc, Polygon', 'Layers, Linetypes, Properties', 'Precision drawing with OSNAP, ORTHO, POLAR'] },
+                    { week: 'Week 3–4', title: 'Editing & Annotation', topics: ['Edit commands: Trim, Extend, Offset, Mirror, Array', 'Dimensions, Leaders, Text, Tables', 'Dynamic Blocks with Parameters & Actions', 'Attributes & data extraction'] },
+                    { week: 'Week 5–6', title: '3D & Output', topics: ['3D solid modeling: Extrude, Revolve, Sweep, Loft', 'Sheet Sets for multi-drawing management', 'Plotting and PDF output with title blocks', 'Industry project: Machine Component Drawing Set'] }
+                ]
+            },
+            solidworks: {
+                title: 'SolidWorks Professional — 60 Days',
+                color: 'amber',
+                modules: [
+                    { week: 'Week 1–2', title: 'Part Modeling', topics: ['Sketch constraints and relations', 'Boss/Base Extrude, Cut, Revolve, Sweep, Loft', 'Fillets, Chamfers, Patterns (Linear/Circular)', 'Design Intent and Feature Tree management'] },
+                    { week: 'Week 3–4', title: 'Assembly & Drawings', topics: ['Mates: Coincident, Concentric, Distance, Angle', 'Exploded views and animations', 'Drawing views, BOM, balloons, GD&T', 'Sheet Metal: K-factor, flat patterns, forming tools'] },
+                    { week: 'Week 5–6', title: 'Advanced & Automation', topics: ['Weldments with custom profiles', 'Surfacing: Boundary, Filled, Knit surfaces', 'Design Tables linked to Excel', 'Macro recording and VBA automation', 'Industry Project: Gearbox full assembly'] }
+                ]
+            },
+            catia: {
+                title: 'CATIA V5 — 60 Days',
+                color: 'blue',
+                modules: [
+                    { week: 'Week 1–2', title: 'Sketcher & Part Design', topics: ['Sketcher workbench: profiles, constraints', 'Pad, Pocket, Shaft, Groove features', 'Dress-up features: Fillet, Chamfer, Draft', 'Boolean operations: Assemble, Add, Remove'] },
+                    { week: 'Week 3–4', title: 'Assembly & Drafting', topics: ['Product structure and component insertion', 'Constraints: Fix, Coincidence, Offset', 'Interference and clash detection', 'Generative Drafting: views, sections, dimensions'] },
+                    { week: 'Week 5–6', title: 'Surface Design (GSD)', topics: ['Wireframe: Lines, Planes, Projections', 'Surface: Extrude, Revolve, Sweep, Loft', 'Join, Trim, Heal, Offset surfaces', 'Closing solids from surfaces', 'Industry Project: Automotive body panel'] }
+                ]
+            },
+            ansys: {
+                title: 'ANSYS Workbench — 45 Days',
+                color: 'yellow',
+                modules: [
+                    { week: 'Week 1–2', title: 'FEA Fundamentals', topics: ['FEM theory: elements, nodes, DOF', 'Geometry import and SpaceClaim editing', 'Meshing: Hex, Tet, Inflation layers', 'Boundary conditions and loads'] },
+                    { week: 'Week 3–4', title: 'Analysis Types', topics: ['Static Structural: stress, strain, deformation', 'Modal Analysis: natural frequencies, mode shapes', 'Steady-State Thermal: heat flux, temperature', 'Thermal-Structural coupling'] },
+                    { week: 'Week 5–6', title: 'Advanced Analysis', topics: ['CFD with Fluent: pipe flow, heat exchanger', 'Fatigue Analysis: S-N curves, safety factor', 'Post-processing: probes, charts, animations', 'Industry Project: Pressure vessel FEA report'] }
+                ]
+            },
+            python: {
+                title: 'Python for Engineers — 60 Days',
+                color: 'emerald',
+                modules: [
+                    { week: 'Week 1–2', title: 'Python Core', topics: ['Syntax, data types, control flow, functions', 'File handling: CSV, Excel (openpyxl, pandas)', 'NumPy for engineering calculations', 'Matplotlib for data visualization'] },
+                    { week: 'Week 3–4', title: 'CAD Automation', topics: ['AutoCAD automation via pyautocad/COM', 'SolidWorks API via win32com', 'Excel report generation with xlwings', 'PDF generation and email automation'] },
+                    { week: 'Week 5–6', title: 'AI Integration', topics: ['Web scraping with BeautifulSoup', 'OpenAI/local LLM API integration', 'Voice agent for PC control', 'Capstone: Full CAD workflow automation script'] }
+                ]
+            },
+            excel: {
+                title: 'Excel for Engineers — 30 Days',
+                color: 'green',
+                modules: [
+                    { week: 'Week 1', title: 'Advanced Functions', topics: ['VLOOKUP, INDEX/MATCH, XLOOKUP', 'IF, IFERROR, nested logic formulas', 'Pivot Tables and dynamic charts', 'Conditional formatting and data validation'] },
+                    { week: 'Week 2', title: 'Dashboards', topics: ['Engineering calculation templates', 'Interactive dashboards with slicers', 'Named ranges and dynamic arrays', 'Power Query for data import'] },
+                    { week: 'Week 3–4', title: 'VBA Automation', topics: ['Macro recording and VBA editor', 'Variables, loops, conditions in VBA', 'UserForms for data entry', 'BOM generator and drawing register automation', 'Industry Project: Engineering dashboard + automation'] }
+                ]
+            }
+        };
+
+        const colorMap = {
+            red: { bg: 'bg-red-500/20', text: 'text-red-400', border: 'border-red-500/30' },
+            amber: { bg: 'bg-amber-500/20', text: 'text-amber-400', border: 'border-amber-500/30' },
+            blue: { bg: 'bg-blue-500/20', text: 'text-blue-400', border: 'border-blue-500/30' },
+            yellow: { bg: 'bg-yellow-500/20', text: 'text-yellow-400', border: 'border-yellow-500/30' },
+            emerald: { bg: 'bg-emerald-500/20', text: 'text-emerald-400', border: 'border-emerald-500/30' },
+            green: { bg: 'bg-green-500/20', text: 'text-green-400', border: 'border-green-500/30' }
+        };
+
+        function showCourseDetail(courseId) {
+            const data = courseData[courseId];
+            const c = colorMap[data.color];
+            document.getElementById('modalTitle').textContent = data.title;
+            
+            let html = '<div class="space-y-4">';
+            data.modules.forEach(mod => {
+                html += `
+                <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="px-2 py-1 rounded-lg ${c.bg} ${c.text} text-xs font-semibold">${mod.week}</span>
+                        <h4 class="font-semibold text-white">${mod.title}</h4>
+                    </div>
+                    <ul class="space-y-1.5">
+                        ${mod.topics.map(t => `<li class="flex items-start gap-2 text-sm text-slate-300"><span class="${c.text} mt-0.5">▸</span>${t}</li>`).join('')}
+                    </ul>
+                </div>`;
+            });
+            html += `</div>
+            <a href="#enroll" onclick="document.getElementById('courseModal').classList.remove('active')" 
+               class="mt-6 w-full py-3 flex items-center justify-center gap-2 ${c.bg} ${c.text} font-semibold rounded-xl border ${c.border} hover:opacity-90 transition-all">
+               Enroll for This Course <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>`;
+            
+            document.getElementById('modalContent').innerHTML = html;
+            document.getElementById('courseModal').classList.add('active');
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        function closeModal(e) {
+            if (e.target === document.getElementById('courseModal')) {
+                document.getElementById('courseModal').classList.remove('active');
+            }
+        }
+
+        // Enroll form
+        // ⚠️ Replace with your deployed Apps Script Web App URL
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwD8F4v3WfdsvV43rei1IlbrRNZzpOLu9plGD0GmjGvuQjFoOrc_1MM2RqdKoK_ps8y/exec';
+
+        async function handleEnroll(e) {
+            e.preventDefault();
+            const form = document.getElementById('enrollForm');
+            const success = document.getElementById('enrollSuccess');
+            const btn = form.querySelector('button[type=submit]');
+            const errorDiv = document.getElementById('formError');
+
+            // Collect form values in order
+            const inputs = form.querySelectorAll('input, select, textarea');
+            const data = {
+                name:      inputs[0].value.trim(),
+                phone:     inputs[1].value.trim(),
+                email:     inputs[2].value.trim(),
+                course:    inputs[3].value,
+                education: inputs[4].value.trim(),
+                message:   inputs[5].value.trim()
+            };
+
+            // Loading state
+            btn.disabled = true;
+            btn.innerHTML = '<svg class="animate-spin w-5 h-5 mr-2 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>Submitting...';
+            if (errorDiv) errorDiv.classList.add('hidden');
+
+            try {
+                await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                // no-cors: can't read response, but no thrown error = success
+                form.classList.add('hidden');
+                success.classList.remove('hidden');
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+
+            } catch (err) {
+                btn.disabled = false;
+                btn.innerHTML = 'Submit Enrollment Request';
+                if (errorDiv) {
+                    errorDiv.textContent = '⚠️ Submission failed. Please WhatsApp us directly at +91 84240 99617';
+                    errorDiv.classList.remove('hidden');
+                }
+            }
+        }
+
+        // GSAP scroll animations
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.from('.hero-bg h1', { y: 50, opacity: 0, duration: 1, delay: 0.3, ease: 'power3.out' });
+        gsap.from('.hero-bg p', { y: 30, opacity: 0, duration: 1, delay: 0.5, ease: 'power3.out' });
+    </script>
 </body>
 </html>
