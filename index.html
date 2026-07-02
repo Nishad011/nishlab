@@ -1121,7 +1121,7 @@
 
         // Enroll form
         // ⚠️ Replace with your deployed Apps Script Web App URL
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby06lGe-mn9C2z0mPGP79Yn2pD_1071yR3xFe7GzTz0eAKD-hsfCq8koizM8HtqC_5BfQ/exec';
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwXQoeVk589S8szq3vRdr_iLpoh8gvKJVAtUVI3RMQ8i6oJn4TdA6Jq1XhGCVdmpDloBQ/exec';
 
         async function handleEnroll(e) {
             e.preventDefault();
@@ -1147,13 +1147,14 @@
             if (errorDiv) errorDiv.classList.add('hidden');
 
             try {
-                const res = await fetch(APPS_SCRIPT_URL, {
+                const formData = new FormData();
+                Object.keys(data).forEach(key => formData.append(key, data[key]));
+
+                await fetch(APPS_SCRIPT_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
+                    mode: 'no-cors',
+                    body: formData
                 });
-                const result = await res.json();
-                if (result.result !== 'success') throw new Error(result.error || 'Unknown error');
                 form.classList.add('hidden');
                 success.classList.remove('hidden');
                 if (typeof lucide !== 'undefined') lucide.createIcons();
