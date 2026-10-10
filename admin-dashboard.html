@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nishlab Creations | Administrator Portal</title>
+<style>
+:root{--n:#061735;--n2:#0d2c5c;--g:#f4b400;--bg:#f4f7fb;--w:#fff;--t:#172033;--m:#68778c;--l:#dce4ef;--green:#15965a;--red:#c53d3d;--blue:#2467b8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--t)}a{text-decoration:none}
+.header{height:70px;background:var(--n);color:#fff}.nav{max-width:1450px;height:70px;margin:auto;padding:8px 20px;display:flex;align-items:center;gap:20px}.brand{display:flex;align-items:center;gap:10px;color:#fff;min-width:230px}.brand img{width:48px;height:48px;object-fit:contain;background:#000;border-radius:7px}.brand b{display:block;letter-spacing:2px}.brand small{color:var(--g);letter-spacing:2px}.admin-badge{background:rgba(244,180,0,.15);border:1px solid rgba(244,180,0,.35);color:#ffd75c;padding:7px 10px;border-radius:7px;font-size:9px;font-weight:900}.right{margin-left:auto;display:flex;align-items:center;gap:12px}.avatar{width:36px;height:36px;border-radius:50%;background:var(--g);color:var(--n);display:grid;place-items:center;font-weight:900}.logout{background:transparent;border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:7px;padding:8px 10px;font-size:9px;font-weight:900}
+.layout{max-width:1450px;margin:auto;display:grid;grid-template-columns:245px 1fr;min-height:calc(100vh - 70px)}.sidebar{background:#fff;border-right:1px solid var(--l);padding:20px 14px}.side-title{font-size:9px;color:#9aa5b4;font-weight:900;letter-spacing:1.5px;margin:7px 10px 10px}.side a{display:flex;gap:10px;align-items:center;color:#56657a;padding:11px 10px;margin:3px 0;border-radius:8px;font-size:10px;font-weight:800}.side a.active,.side a:hover{background:#edf4ff;color:var(--n2)}.ico{width:24px;text-align:center}
+.main{padding:28px}.head{display:flex;justify-content:space-between;align-items:flex-end;gap:15px}.head h1{font-size:27px;color:var(--n);margin:0}.head p{font-size:11px;color:var(--m);margin:5px 0 0}.date{font-size:10px;color:var(--m);background:#fff;border:1px solid var(--l);padding:9px 11px;border-radius:8px}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin:20px 0}.stat{background:#fff;border:1px solid var(--l);border-radius:12px;padding:16px}.stat b{display:block;font-size:23px;color:var(--n)}.stat span{font-size:9px;color:var(--m)}.trend{font-size:8px;color:var(--green);font-weight:900;margin-top:7px;display:block}
+.grid{display:grid;grid-template-columns:1.4fr .9fr;gap:15px}.panel{background:#fff;border:1px solid var(--l);border-radius:14px;padding:19px}.panel h2{font-size:15px;color:var(--n);margin:0 0 14px}.panel-head{display:flex;justify-content:space-between;align-items:center}.panel-head button,.primary{border:0;background:var(--g);color:var(--n);font-size:9px;font-weight:900;border-radius:7px;padding:8px 10px;cursor:pointer}
+.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:600px}.table th,.table td{padding:11px 8px;border-bottom:1px solid #edf0f4;text-align:left;font-size:9px}.table th{font-size:8px;color:#8a97a9;text-transform:uppercase}.student-name{font-weight:900;color:var(--n)}.sub{display:block;color:var(--m);font-size:8px;margin-top:3px}.status{font-size:8px;font-weight:900;padding:5px 7px;border-radius:5px}.active{background:#eaf8f0;color:var(--green)}.pending{background:#fff4d2;color:#866300}.review{background:#edf4ff;color:var(--blue)}.danger{background:#fdeeee;color:var(--red)}
+.progress{height:6px;background:#e9eef4;border-radius:8px;overflow:hidden;width:100px}.progress i{display:block;height:100%;background:var(--green);border-radius:8px}
+.activity{display:grid;gap:8px}.activity-item{display:flex;gap:10px;padding:10px;background:#f8fafc;border-radius:8px}.activity-dot{width:7px;height:7px;background:var(--g);border-radius:50%;margin-top:4px;flex:none}.activity-item b{display:block;color:var(--n);font-size:9px}.activity-item span{font-size:8px;color:var(--m)}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini{border:1px solid var(--l);border-radius:10px;padding:13px}.mini b{display:block;color:var(--n);font-size:10px}.mini span{display:block;color:var(--m);font-size:8px;margin-top:4px}
+.section{margin-top:15px}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.quick button{background:#fff;border:1px solid var(--l);border-radius:10px;padding:14px;color:var(--n);font-size:9px;font-weight:900;cursor:pointer}.quick button:hover{background:#f8fbff;border-color:#9eb8dc}
+.modal{position:fixed;inset:0;background:rgba(3,12,29,.72);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}.modal.show{display:flex}.modal-card{background:#fff;border-radius:15px;width:min(520px,100%);padding:25px}.close{float:right;font-size:22px;color:var(--m);cursor:pointer}.modal-card h2{color:var(--n);margin:0 0 7px}.modal-card p{font-size:11px;color:var(--m);line-height:1.7}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{display:none}.stats{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr}}
+@media(max-width:650px){.main{padding:16px}.stats{grid-template-columns:1fr 1fr}.quick{grid-template-columns:1fr 1fr}.head{display:block}.date{display:inline-block;margin-top:10px}}
+</style>
+</head>
+<body>
+<script>
+(function(){
+  const s = sessionStorage.getItem('nishlab_session');
+  if(!s){ location.href='login.html'; return; }
+  const session = JSON.parse(s);
+  if(String(session.role).toLowerCase() !== 'admin'){ location.href='login.html'; return; }
+  window.__nishlabSession = session;
+})();
+</script>
+<header class="header"><div class="nav">
+<a class="brand" href="index.html"><img src="nishlab-logo.png" alt="Nishlab Creations"><div><b>NISHLAB</b><small>CREATIONS</small></div></a>
+<span class="admin-badge">ADMINISTRATOR PORTAL</span>
+<div class="right"><span style="font-size:10px;color:#d5e0ef">Super Admin</span><span class="avatar">NA</span><button class="logout" onclick="logout()">LOGOUT</button></div>
+</div></header>
+
+<div class="layout">
+<aside class="sidebar"><div class="side-title">ADMIN CONTROL</div><nav class="side">
+<a class="active" href="#overview"><span class="ico">⌂</span>Overview</a>
+<a href="#students"><span class="ico">♙</span>Students</a>
+<a href="#courses"><span class="ico">▣</span>Courses</a>
+<a href="#batches"><span class="ico">◫</span>Batches</a>
+<a href="#faculty"><span class="ico">◆</span>Faculty</a>
+<a href="#assignments"><span class="ico">✓</span>Assignments</a>
+<a href="#projects"><span class="ico">↥</span>Projects</a>
+<a href="#exams"><span class="ico">◷</span>Exams</a>
+<a href="#certificates"><span class="ico">✦</span>Certificates</a>
+<a href="#payments"><span class="ico">₹</span>Payments</a>
+<a href="#workshops"><span class="ico">▤</span>Workshops</a>
+<a href="#reports"><span class="ico">▥</span>Reports</a>
+<a href="#settings"><span class="ico">⚙</span>Settings</a>
+</nav></aside>
+
+<main class="main" id="overview">
+<div class="head"><div><h1>Administrator Dashboard</h1><p>Manage students, courses, batches, assessments, projects and institute operations.</p></div><div class="date">15 AUG 2026 · ADMIN VIEW</div></div>
+
+<div class="stats">
+<div class="stat"><b>248</b><span>Total Students</span><i class="trend">↑ 18 this month</i></div>
+<div class="stat"><b>7</b><span>Active Courses</span><i class="trend">All programs live</i></div>
+<div class="stat"><b>12</b><span>Active Batches</span><i class="trend">3 starting soon</i></div>
+<div class="stat"><b>37</b><span>Pending Reviews</span><i class="trend" style="color:#866300">Needs attention</i></div>
+<div class="stat"><b>₹1.84L</b><span>Monthly Collections</span><i class="trend">↑ 12.4%</i></div>
+</div>
+
+<div class="grid">
+<section class="panel" id="students"><div class="panel-head"><h2>Recent Students</h2><button onclick="openAddStudent()">+ ADD STUDENT</button></div>
+<div class="table-wrap"><table class="table"><thead><tr><th>Student</th><th>Course</th><th>Progress</th><th>Status</th><th>Action</th></tr></thead><tbody>
+<tr><td><span class="student-name">Aarav Patil</span><span class="sub">aarav@email.com</span></td><td>SolidWorks</td><td><div class="progress"><i style="width:82%"></i></div></td><td><span class="status active">ACTIVE</span></td><td><button class="primary" onclick="openModal('Student Profile')">VIEW</button></td></tr>
+<tr><td><span class="student-name">Sneha Sharma</span><span class="sub">sneha@email.com</span></td><td>ANSYS</td><td><div class="progress"><i style="width:54%"></i></div></td><td><span class="status review">REVIEW</span></td><td><button class="primary" onclick="openModal('Student Profile')">VIEW</button></td></tr>
+<tr><td><span class="student-name">Rahul Kumar</span><span class="sub">rahul@email.com</span></td><td>AutoCAD</td><td><div class="progress"><i style="width:68%"></i></div></td><td><span class="status active">ACTIVE</span></td><td><button class="primary" onclick="openModal('Student Profile')">VIEW</button></td></tr>
+<tr><td><span class="student-name">Fatima Khan</span><span class="sub">fatima@email.com</span></td><td>Master Program</td><td><div class="progress"><i style="width:41%"></i></div></td><td><span class="status pending">PENDING</span></td><td><button class="primary" onclick="openModal('Student Profile')">VIEW</button></td></tr>
+</tbody></table></div></section>
+
+<section class="panel" id="reports"><h2>Today's Activity</h2><div class="activity">
+<div class="activity-item"><span class="activity-dot"></span><div><b>6 new student registrations</b><span>Last 24 hours</span></div></div>
+<div class="activity-item"><span class="activity-dot"></span><div><b>12 assignments submitted</b><span>Waiting for faculty review</span></div></div>
+<div class="activity-item"><span class="activity-dot"></span><div><b>4 project reviews completed</b><span>Today</span></div></div>
+<div class="activity-item"><span class="activity-dot"></span><div><b>3 certificates generated</b><span>Today</span></div></div>
+<div class="activity-item"><span class="activity-dot"></span><div><b>1 workshop enquiry received</b><span>AIKTC / Institution enquiry</span></div></div>
+</div></section>
+</div>
+
+<section class="panel section" id="courses"><div class="panel-head"><h2>Course Management</h2><button onclick="openModal('Create Course')">+ CREATE COURSE</button></div><div class="cards">
+<div class="mini"><b>SolidWorks Professional</b><span>48 hrs · 24 days · 42 enrolled</span></div>
+<div class="mini"><b>ANSYS Workbench Professional</b><span>36 hrs · 18 days · 31 enrolled</span></div>
+<div class="mini"><b>AutoCAD Professional</b><span>40 hrs · 20 days · 58 enrolled</span></div>
+<div class="mini"><b>Master Program</b><span>204 hrs · 102 days · 76 enrolled</span></div>
+</div></section>
+
+<section class="panel section" id="batches"><div class="panel-head"><h2>Batch Management</h2><button onclick="openModal('Create Batch')">+ CREATE BATCH</button></div><div class="table-wrap"><table class="table"><thead><tr><th>Batch</th><th>Course</th><th>Schedule</th><th>Students</th><th>Status</th></tr></thead><tbody>
+<tr><td><span class="student-name">AUG-26-MASTER</span></td><td>Master Program</td><td>Mon–Sat · 8 PM</td><td>24 / 30</td><td><span class="status active">ACTIVE</span></td></tr>
+<tr><td><span class="student-name">AUG-26-CAD</span></td><td>AutoCAD</td><td>Tue–Thu–Sat · 7 PM</td><td>18 / 25</td><td><span class="status active">ACTIVE</span></td></tr>
+<tr><td><span class="student-name">SEP-26-SW</span></td><td>SolidWorks</td><td>Mon–Fri · 7 PM</td><td>8 / 25</td><td><span class="status pending">ENROLLING</span></td></tr>
+</tbody></table></div></section>
+
+<div class="grid section">
+<section class="panel" id="assignments"><h2>Pending Assignments & Projects</h2><div class="list">
+<div class="mini"><b>24 Assignments</b><span>Pending faculty review · <button class="primary" onclick="openModal('Assignment Review')">REVIEW</button></span></div>
+<div class="mini"><b>13 Projects</b><span>Awaiting evaluation · <button class="primary" onclick="openModal('Project Review')">REVIEW</button></span></div>
+<div class="mini"><b>6 Presentations</b><span>Scheduled for review · <button class="primary" onclick="openModal('Presentation Review')">VIEW</button></span></div>
+</div></section>
+<section class="panel" id="exams"><h2>Upcoming Exams</h2><div class="list">
+<div class="mini"><b>SolidWorks Final Assessment</b><span>22 Aug · 7:00 PM · 18 students</span></div>
+<div class="mini"><b>ANSYS Project Review</b><span>28 Aug · 7:00 PM · 12 students</span></div>
+<div class="mini"><b>Master Program Assessment</b><span>31 Aug · 8:00 PM · 24 students</span></div>
+</div></section>
+</div>
+
+<div class="grid section">
+<section class="panel" id="certificates"><div class="panel-head"><h2>Certificates</h2><button onclick="openModal('Generate Certificate')">GENERATE</button></div><div class="cards"><div class="mini"><b>Ready to Generate</b><span>8 eligible students</span></div><div class="mini"><b>Issued This Month</b><span>32 certificates</span></div></div></section>
+<section class="panel" id="payments"><h2>Payments Overview</h2><div class="cards"><div class="mini"><b>₹1.84L</b><span>Collected this month</span></div><div class="mini"><b>₹36,500</b><span>Pending payments</span></div></div></section>
+</div>
+
+<div class="grid section">
+<section class="panel" id="workshops"><div class="panel-head"><h2>Workshop Management</h2><button onclick="openModal('New Workshop')">+ ADD WORKSHOP</button></div><div class="cards"><div class="mini"><b>AIKTC School of Engineering</b><span>Completed · Workshop record</span></div><div class="mini"><b>New Institution Enquiries</b><span>1 enquiry awaiting response</span></div></div></section>
+<section class="panel" id="faculty"><h2>Faculty</h2><div class="cards"><div class="mini"><b>Active Faculty</b><span>8 instructors</span></div><div class="mini"><b>Pending Reviews</b><span>37 academic submissions</span></div></div></section>
+</div>
+
+<section class="panel section" id="settings"><div class="panel-head"><h2>Quick Administration</h2></div><div class="quick">
+<button onclick="openModal('Manage Users')">MANAGE USERS</button><button onclick="openModal('Role Permissions')">ROLE PERMISSIONS</button><button onclick="openModal('System Settings')">SYSTEM SETTINGS</button><button onclick="openModal('Backup & Data')">BACKUP & DATA</button>
+</div></section>
+</main></div>
+
+<div class="modal" id="modal"><div class="modal-card"><span class="close" onclick="closeModal()">×</span><h2 id="modalTitle">Administrator</h2><p>This administrator portal is a front-end prototype. Connect these controls to your authentication, database, payment gateway, file storage and LMS backend for production use.</p><button class="primary" onclick="closeModal()">CLOSE</button></div></div>
+
+<div class="modal" id="addStudentModal">
+<div class="modal-card">
+<span class="close" onclick="closeAddStudent()">×</span>
+<h2>Add New Student</h2>
+<p>This creates a real login account. Share the email and password with the student directly.</p>
+<div style="margin-top:14px;display:grid;gap:10px">
+<div><label style="display:block;font-size:9px;font-weight:900;color:var(--n);margin-bottom:5px">FULL NAME</label><input id="as_name" style="width:100%;padding:10px;border:1px solid var(--l);border-radius:7px" placeholder="Student name"></div>
+<div><label style="display:block;font-size:9px;font-weight:900;color:var(--n);margin-bottom:5px">EMAIL</label><input id="as_email" type="email" style="width:100%;padding:10px;border:1px solid var(--l);border-radius:7px" placeholder="student@email.com"></div>
+<div><label style="display:block;font-size:9px;font-weight:900;color:var(--n);margin-bottom:5px">TEMPORARY PASSWORD</label><input id="as_password" style="width:100%;padding:10px;border:1px solid var(--l);border-radius:7px" placeholder="Set a temporary password"></div>
+</div>
+<button class="primary" style="margin-top:16px;width:100%;padding:11px" id="as_submitBtn" onclick="submitAddStudent()">CREATE STUDENT ACCOUNT</button>
+<div id="as_success" style="display:none;background:#eaf8f0;color:var(--green);padding:9px;border-radius:7px;font-size:10px;font-weight:800;margin-top:10px;text-align:center">Student account created successfully!</div>
+<div id="as_error" style="display:none;background:#fdeeee;color:var(--red);padding:9px;border-radius:7px;font-size:10px;font-weight:800;margin-top:10px;text-align:center"></div>
+</div>
+</div>
+<script>
+function openModal(t){document.getElementById('modalTitle').textContent=t;document.getElementById('modal').classList.add('show')}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function logout(){sessionStorage.removeItem('nishlab_session');location.href='login.html'}
+
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyoy2NIWVPHsmsPIlF6bt8iKp3-uaZSfo-zP8uPRSm4XCSqRkBPthyYNHiy55HIExlX4A/exec";
+
+function openAddStudent(){document.getElementById('addStudentModal').classList.add('show')}
+function closeAddStudent(){
+  document.getElementById('addStudentModal').classList.remove('show');
+  document.getElementById('as_success').style.display='none';
+  document.getElementById('as_error').style.display='none';
+  document.getElementById('as_name').value='';
+  document.getElementById('as_email').value='';
+  document.getElementById('as_password').value='';
+}
+function submitAddStudent(){
+  const name = document.getElementById('as_name').value.trim();
+  const email = document.getElementById('as_email').value.trim();
+  const password = document.getElementById('as_password').value;
+  const successBox = document.getElementById('as_success');
+  const errorBox = document.getElementById('as_error');
+  const btn = document.getElementById('as_submitBtn');
+  successBox.style.display='none'; errorBox.style.display='none';
+
+  if(!name || !email || !password){
+    errorBox.textContent = 'Please fill in all fields.';
+    errorBox.style.display='block';
+    return;
+  }
+
+  const session = window.__nishlabSession || JSON.parse(sessionStorage.getItem('nishlab_session') || '{}');
+
+  btn.disabled = true; btn.textContent = 'CREATING...';
+
+  fetch(GOOGLE_SCRIPT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ action:'register', name:name, email:email, password:password, role:'Student', adminKey: session.adminKey || '' })
+  })
+  .then(r => r.json())
+  .then(res => {
+    if(res.result === 'success'){
+      successBox.style.display='block';
+      setTimeout(closeAddStudent, 1800);
+    } else {
+      errorBox.textContent = res.message || 'Could not create account.';
+      errorBox.style.display='block';
+    }
+  })
+  .catch(()=>{
+    errorBox.textContent = 'Could not reach the server.';
+    errorBox.style.display='block';
+  })
+  .finally(()=>{ btn.disabled=false; btn.textContent='CREATE STUDENT ACCOUNT'; });
+}
+document.getElementById('addStudentModal').addEventListener('click',e=>{if(e.target.id==='addStudentModal')closeAddStudent()})
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()})
+</script>
+</body></html>

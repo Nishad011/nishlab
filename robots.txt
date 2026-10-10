@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin-dashboard.html
+Disallow: /student-dashboard.html
+Sitemap: https://nishlabcreations.online/sitemap.xml

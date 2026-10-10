@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nishlab Creations | Student Portal</title>
+<style>
+:root{--n:#061735;--n2:#0d2c5c;--g:#f4b400;--bg:#f5f7fb;--w:#fff;--t:#172033;--m:#64748b;--l:#dce4ef;--green:#15965a;--red:#c53d3d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--t)}
+a{text-decoration:none}.header{background:var(--n);color:#fff}.nav{max-width:1400px;margin:auto;min-height:70px;padding:9px 20px;display:flex;align-items:center;gap:20px}.brand{display:flex;align-items:center;gap:10px;color:#fff;min-width:215px}.brand img{width:48px;height:48px;object-fit:contain;background:#000;border-radius:7px}.brand b{display:block;letter-spacing:2px}.brand small{color:var(--g);letter-spacing:2.5px}.navright{margin-left:auto;display:flex;align-items:center;gap:12px}.student{font-size:11px;color:#d5e0ef}.avatar{width:36px;height:36px;background:var(--g);color:var(--n);border-radius:50%;display:grid;place-items:center;font-weight:900}.logout{font-size:10px;color:#fff;border:1px solid rgba(255,255,255,.2);padding:8px 10px;border-radius:7px;cursor:pointer}
+.layout{max-width:1400px;margin:auto;display:grid;grid-template-columns:245px 1fr;min-height:calc(100vh - 70px)}.sidebar{background:#fff;border-right:1px solid var(--l);padding:22px 14px}.side-title{font-size:9px;color:#9aa5b4;font-weight:900;letter-spacing:1.5px;margin:6px 10px 10px}.side a{display:flex;align-items:center;gap:10px;color:#516073;padding:12px 10px;border-radius:8px;font-size:11px;font-weight:800;margin:3px 0}.side a.active,.side a:hover{background:#edf4ff;color:var(--n2)}.ico{width:25px;text-align:center}.main{padding:30px}.welcome{background:linear-gradient(120deg,var(--n),var(--n2));color:#fff;border-radius:18px;padding:28px;display:flex;justify-content:space-between;gap:20px;align-items:center}.welcome h1{font-size:27px;margin:0 0 5px}.welcome p{font-size:11px;color:#d5e0ef;margin:0;line-height:1.6}.streak{background:rgba(244,180,0,.12);border:1px solid rgba(244,180,0,.3);padding:13px 16px;border-radius:10px;min-width:145px}.streak b{display:block;color:var(--g);font-size:20px}.streak span{font-size:9px;color:#d5e0ef}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.stat{background:#fff;border:1px solid var(--l);border-radius:12px;padding:17px}.stat b{font-size:22px;color:var(--n);display:block}.stat span{font-size:9px;color:var(--m)}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:27px 0 12px}.section-title h2{font-size:18px;color:var(--n);margin:0}.section-title a{font-size:10px;color:#1d5ba8;font-weight:900}
+.course{background:#fff;border:1px solid var(--l);border-radius:14px;padding:18px;margin-bottom:10px}.course-top{display:flex;justify-content:space-between;gap:15px}.course h3{font-size:14px;color:var(--n);margin:0 0 4px}.course p{font-size:10px;color:var(--m);margin:0}.percent{font-weight:900;font-size:12px;color:var(--green)}.bar{height:7px;background:#e9eef4;border-radius:10px;margin-top:13px;overflow:hidden}.fill{height:100%;background:var(--green);border-radius:10px}.course-bottom{display:flex;justify-content:space-between;margin-top:9px;font-size:9px;color:var(--m)}.continue{background:var(--n);color:#fff;padding:7px 10px;border-radius:6px;font-weight:900}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.panel{background:#fff;border:1px solid var(--l);border-radius:14px;padding:20px}.panel h3{font-size:14px;color:var(--n);margin:0 0 12px}.list{display:grid;gap:8px}.item{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#f8fafc;padding:11px;border-radius:8px}.item b{font-size:10px;color:var(--n)}.item span{font-size:9px;color:var(--m)}.status{padding:5px 7px;border-radius:5px;font-size:8px;font-weight:900}.done{background:#eaf8f0;color:var(--green)}.pending{background:#fff4d2;color:#856000}.skills{display:flex;flex-wrap:wrap;gap:6px}.skill{background:#edf4ff;color:var(--n2);padding:7px 9px;border-radius:6px;font-size:9px;font-weight:900}.profile{display:grid;grid-template-columns:80px 1fr;gap:15px}.profile-avatar{width:70px;height:70px;border-radius:50%;background:var(--n);color:var(--g);display:grid;place-items:center;font-size:22px;font-weight:900}.profile h3{margin:0;color:var(--n);font-size:15px}.profile p{font-size:10px;color:var(--m);line-height:1.6;margin:5px 0}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.quick a{background:#fff;border:1px solid var(--l);border-radius:10px;padding:14px;color:var(--n);font-size:9px;font-weight:900;text-align:center}.quick a:hover{border-color:#9eb8dc;background:#f8fbff}
+.modal{position:fixed;inset:0;background:rgba(3,12,29,.72);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}.modal.show{display:flex}.modal-card{background:#fff;border-radius:15px;width:min(520px,100%);padding:25px}.modal-card h2{color:var(--n);font-size:20px;margin:0 0 7px}.modal-card p{font-size:11px;color:var(--m);line-height:1.7}.close{float:right;cursor:pointer;font-size:22px;color:var(--m)}button.primary{border:0;background:var(--g);color:var(--n);padding:11px 15px;border-radius:8px;font-weight:900;font-size:10px;cursor:pointer}
+@media(max-width:950px){.layout{grid-template-columns:1fr}.sidebar{display:none}.stats{grid-template-columns:1fr 1fr}.quick{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.navright .student{display:none}.main{padding:16px}.welcome{align-items:flex-start;flex-direction:column}.grid2{grid-template-columns:1fr}.quick{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<script>
+(function(){
+  const s = sessionStorage.getItem('nishlab_session');
+  if(!s){ location.href='login.html'; return; }
+  const session = JSON.parse(s);
+  if(String(session.role).toLowerCase() !== 'student'){ location.href='login.html'; return; }
+  window.__nishlabSession = session;
+})();
+</script>
+<header class="header"><div class="nav">
+<a class="brand" href="index.html"><img src="nishlab-logo.png" alt="Nishlab Creations"><div><b>NISHLAB</b><small>CREATIONS</small></div></a>
+<div class="navright"><span class="student">Student Portal</span><span class="avatar">NA</span><button class="logout" onclick="logout()">LOGOUT</button></div>
+</div></header>
+
+<div class="layout">
+<aside class="sidebar"><div class="side-title">STUDENT DASHBOARD</div><nav class="side">
+<a class="active" href="#dashboard"><span class="ico">⌂</span>Dashboard</a>
+<a href="#profile"><span class="ico">◉</span>My Resume</a>
+<a href="#skills"><span class="ico">◆</span>Skills</a>
+<a href="#enrolled"><span class="ico">▣</span>Courses Enrolled</a>
+<a href="#progress"><span class="ico">◔</span>Progress</a>
+<a href="#certificate"><span class="ico">✦</span>Certificate</a>
+<a href="#exam"><span class="ico">◷</span>Schedule Exam</a>
+<a href="#projects"><span class="ico">↥</span>Upload Projects</a>
+<a href="#presentation"><span class="ico">▤</span>Presentation</a>
+<a href="#notes"><span class="ico">☰</span>Notes</a>
+<a href="#assignments"><span class="ico">✓</span>Assignments</a>
+</nav></aside>
+
+<main class="main" id="dashboard">
+<section class="welcome"><div><div style="color:#ffd75c;font-size:9px;font-weight:900;letter-spacing:1.5px">WELCOME BACK</div><h1>Hello, Nishad 👋</h1><p>Continue your learning journey and complete your next engineering milestone.</p></div><div class="streak"><b>12 DAYS</b><span>Learning streak · Keep going!</span></div></section>
+
+<div class="stats">
+<div class="stat"><b>3</b><span>Courses Enrolled</span></div><div class="stat"><b>68%</b><span>Overall Progress</span></div><div class="stat"><b>14</b><span>Assignments Done</span></div><div class="stat"><b>2</b><span>Certificates Earned</span></div>
+</div>
+
+<div class="section-title" id="enrolled"><h2>Courses Enrolled</h2><a href="courses.html">EXPLORE MORE →</a></div>
+<div class="course"><div class="course-top"><div><h3>SolidWorks Professional</h3><p>48 Hours · 24 Days · CAD</p></div><span class="percent">82%</span></div><div class="bar"><div class="fill" style="width:82%"></div></div><div class="course-bottom"><span>Day 20 of 24 · Weldments & Surfacing</span><button class="continue" onclick="openModal('Continue SolidWorks')">CONTINUE LEARNING</button></div></div>
+<div class="course"><div class="course-top"><div><h3>ANSYS Workbench Professional</h3><p>36 Hours · 18 Days · CAE</p></div><span class="percent">54%</span></div><div class="bar"><div class="fill" style="width:54%"></div></div><div class="course-bottom"><span>Day 10 of 18 · Thermal Analysis</span><button class="continue" onclick="openModal('Continue ANSYS')">CONTINUE LEARNING</button></div></div>
+<div class="course"><div class="course-top"><div><h3>Python for Engineers</h3><p>24 Hours · 12 Days · Automation</p></div><span class="percent">67%</span></div><div class="bar"><div class="fill" style="width:67%"></div></div><div class="course-bottom"><span>Day 8 of 12 · AutoCAD Automation</span><button class="continue" onclick="openModal('Continue Python')">CONTINUE LEARNING</button></div></div>
+
+<div class="section-title" id="progress"><h2>Learning Progress</h2><a href="#enrolled">VIEW COURSES →</a></div>
+<div class="grid2">
+<section class="panel" id="skills"><h3>My Skills</h3><div class="skills"><span class="skill">AutoCAD</span><span class="skill">SolidWorks</span><span class="skill">CATIA V5</span><span class="skill">ANSYS</span><span class="skill">Python</span><span class="skill">Excel</span><span class="skill">VBA</span><span class="skill">GD&T</span><span class="skill">Engineering Drawings</span></div></section>
+<section class="panel" id="profile"><h3>My Resume</h3><div class="profile"><div class="profile-avatar">NA</div><div><h3>Nishad Ansar Ahmed Saifi</h3><p>Mechanical Engineering · CAD / CAE / Automation</p><p>Resume completeness: <b style="color:var(--green)">86%</b></p><button class="primary" onclick="openModal('Resume Builder')">EDIT RESUME</button></div></div></section>
+</div>
+
+<div class="section-title"><h2>Upcoming & Pending</h2></div>
+<div class="grid2">
+<section class="panel" id="exam"><h3>Schedule Exam</h3><div class="list"><div class="item"><div><b>SolidWorks Final Assessment</b><span>22 Aug · 7:00 PM</span></div><span class="status pending">UPCOMING</span></div><div class="item"><div><b>ANSYS Project Review</b><span>28 Aug · 7:00 PM</span></div><span class="status pending">SCHEDULED</span></div></div></section>
+<section class="panel" id="certificate"><h3>Certificates</h3><div class="list"><div class="item"><div><b>AutoCAD Professional</b><span>Issued · 12 Aug 2026</span></div><span class="status done">VIEW</span></div><div class="item"><div><b>CAD Foundations</b><span>Issued · 04 Aug 2026</span></div><span class="status done">DOWNLOAD</span></div></div></section>
+</div>
+
+<div class="section-title"><h2>Student Work</h2></div>
+<div class="grid2">
+<section class="panel" id="projects"><h3>Upload Projects</h3><div class="item"><div><b>Gearbox Assembly Project</b><span>Latest version: v2 · Submitted</span></div><span class="status done">SUBMITTED</span></div><br><button class="primary" onclick="openModal('Project Upload')">+ UPLOAD PROJECT</button></section>
+<section class="panel" id="presentation"><h3>Upload Presentation</h3><div class="item"><div><b>Capstone Presentation</b><span>Not uploaded yet</span></div><span class="status pending">PENDING</span></div><br><button class="primary" onclick="openModal('Presentation Upload')">+ UPLOAD PRESENTATION</button></section>
+</div>
+
+<div class="section-title"><h2>Learning Resources</h2></div>
+<div class="grid2">
+<section class="panel" id="notes"><h3>Notes</h3><div class="list"><div class="item"><div><b>SolidWorks — Day 20 Notes</b><span>PDF · 2.4 MB</span></div><span class="status done">OPEN</span></div><div class="item"><div><b>ANSYS Thermal Analysis Notes</b><span>PDF · 1.8 MB</span></div><span class="status done">OPEN</span></div></div></section>
+<section class="panel" id="assignments"><h3>Assignments</h3><div class="list"><div class="item"><div><b>Sheet Metal Enclosure</b><span>Due 24 Aug</span></div><span class="status pending">PENDING</span></div><div class="item"><div><b>Thermal Analysis Report</b><span>Due 29 Aug</span></div><span class="status pending">PENDING</span></div></div><br><button class="primary" onclick="openModal('Assignment Upload')">+ UPLOAD ASSIGNMENT</button></section>
+</div>
+
+<div class="section-title"><h2>Quick Actions</h2></div>
+<div class="quick"><a href="#profile">EDIT RESUME</a><a href="#skills">UPDATE SKILLS</a><a href="#projects">UPLOAD PROJECT</a><a href="#exam">SCHEDULE EXAM</a></div>
+</main>
+</div>
+
+<div class="modal" id="modal"><div class="modal-card"><span class="close" onclick="closeModal()">×</span><h2 id="modalTitle">Student Portal</h2><p>This is the front-end dashboard prototype. Connect this action to your student database, file storage or LMS backend when the portal is implemented.</p><button class="primary" onclick="closeModal()">OK</button></div></div>
+<script>
+function openModal(title){document.getElementById('modalTitle').textContent=title;document.getElementById('modal').classList.add('show')}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function logout(){sessionStorage.removeItem('nishlab_session');location.href='login.html'}
+document.addEventListener('DOMContentLoaded', function(){
+  if(window.__nishlabSession){
+    var av = document.querySelector('.avatar');
+    if(av) av.textContent = window.__nishlabSession.name.split(' ').map(function(w){return w[0]}).join('').substring(0,2).toUpperCase();
+    var greet = document.querySelector('.welcome h1');
+    if(greet) greet.textContent = 'Hello, ' + window.__nishlabSession.name.split(' ')[0] + ' 👋';
+  }
+});
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()})
+</script>
+</body>
+</html>
